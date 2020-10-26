@@ -14,53 +14,39 @@ dayjs.extend(customParseFormat)
 
 const mockData = [
     {
-        periodName: "Period 1",
-        startTime: "12:00 AM",
-        endTime: "12:15 AM"
-    }
-    ,
-    {
-        periodName: "Period 2",
-        startTime: "12:15 AM",
-        endTime: "12:20 AM"
-    }
-    ,
-    {
-        periodName: "Period 3",
-        startTime: "12:20 AM",
-        endTime: "1:03 AM"
-    },
-    {
-        periodName: "Period 4",
-        startTime: "1:03 AM",
-        endTime: "1:05 AM"
-    },
-    {
-        periodName: "Period 5",
-        startTime: "1:05 AM",
-        endTime: "1:06 AM"
-    },
-    {
-        periodName: "Period 6",
-        startTime: "1:06 AM",
-        endTime: "1:07 AM"
-    },
-    {
         periodName: "Period 8",
-        startTime: "1:07 AM",
-        endTime: "1:11 AM"
+        startTime: "9:23 PM",
+        endTime: "9:29 PM"
     },
-    {
-        periodName: "Period 8",
-        startTime: "1:11 AM",
-        endTime: "1:12 AM"
-    }
 ]
 
 
 const Schedule = () => {
 
     const [schedule, setSchedule] = useState(null)
+    const [period, setPeriod] = useState(null)
+    const [currentTime, setCurrentTime] = useState(dayjs().valueOf())
+    const [status, setStatus] = useState('SCHOOL_NOW')
+
+    const getPeriod = () => {
+
+        let currentTime = dayjs().valueOf()
+        let beforeSchool = currentTime < schedule[0].startTimeUnix
+        let afterSchool = currentTime > schedule[schedule.length - 1].endTimeUnix
+
+        if(beforeSchool){
+            setStatus('BEFORE_SCHOOL')
+        } else if (afterSchool) {
+            setStatus('AFTER_SCHOOL')
+        }
+
+        schedule.forEach(period => {
+            if(currentTime >= period.startTimeUnix && currentTime < period.endTimeUnix){
+                console.log(period)
+                setPeriod(period)
+            }
+        })
+    }
 
     const fetchSchedule = async () => {
 
@@ -78,23 +64,37 @@ const Schedule = () => {
 
 
         setSchedule(scheduleWithUnix)
-
-
-
     }
 
     useEffect(() => {
+
+        if(schedule && !period){
+            console.log('get period')
+            getPeriod()
+        }
+
         if(!schedule){
             fetchSchedule()
+        } else {
+            timer()
         }
-    })
+    }, [schedule])
+
+    const timer = () => {
+        setCurrentTime(dayjs().valueOf())
+        setTimeout(() => timer(), 50)
+    }
 
     return(
         <>
         <Navbar/>
         <div style={{background: "#fafcff", display:"flex",flexDirection:"row",height:"calc(100vh - 60px)", width: "100%", alignItems: 'center', justifyContent: 'center'}}>
-            {schedule ?
-            <Progress schedule={schedule}/>
+            {schedule && period ?
+                {
+                    'SCHOOL_NOW': <Progress currentTime={currentTime} period={period} getPeriod={getPeriod}/>,
+                    'BEFORE_SCHOOL': <h1>before</h1>,
+                    'AFTER_SCHOOL': <h1>after</h1>
+                }[status]
             :
             <>loading</>
             }
