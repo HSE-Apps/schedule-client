@@ -152,7 +152,7 @@ const Schedule = () => {
     }
 
     return(
-        <div style={{height: '100vh', display: 'flex', justifyContent:'space-between'}}>
+        <div style={{height: '100vh', display: 'flex', flexDirection: 'column',justifyContent:'space-between'}}>
         <Navbar/>
 
 
@@ -179,7 +179,7 @@ const Schedule = () => {
             }
         </div>
 
-        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: "80px"}}>
+        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: "80px", marginBottom: '20px'}}>
             <div style={{display: 'flex', zIndex: 4, boxShadow: " 2px 2px 10px rgb(0,118,220,0.2) ", borderRadius: "10px"}}>
                         <div onClick={() => setView("list")} style={{width: "80px", height: "45px", display: 'flex', borderRadius: "10px 0px 0px 10px",justifyContent: 'center', alignItems: "center", background: view == "list" ? "white" : "transparent", boxShadow: view == "list" ? " 2px 2px 10px rgb(0,118,220,0.4) " : "none", cursor: 'pointer'}}>
                             <Text style={{paddingTop: '5px', color: "#333"}}><UnorderedListOutlined style={{fontSize: "20px"}}/></Text>
