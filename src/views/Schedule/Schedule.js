@@ -17,6 +17,8 @@ import SettingsContext from '../../contexts/SettingsContext'
 
 import {motion, useAnimation} from 'framer-motion'
 
+import Div100vh from 'react-div-100vh'
+
 const {Text} = Typography
 
 var customParseFormat = require('dayjs/plugin/customParseFormat')
@@ -40,7 +42,7 @@ const mockData = [
     {
         periodName: "Period 5",
         startTime: "7:50 PM",
-        endTime: "7:55 PM",
+        endTime: "11:55 PM",
     }, 
 
     
@@ -152,7 +154,7 @@ const Schedule = () => {
     }
 
     return(
-        <div style={{height: '100vh', display: 'flex', flexDirection: 'column',justifyContent:'space-between'}}>
+        <Div100vh style={{ display: 'flex', flexDirection: 'column',justifyContent:'space-between'}}>
         <Navbar/>
 
 
@@ -178,22 +180,22 @@ const Schedule = () => {
             </>
             }
         </div>
-
-        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: "80px", marginBottom: '20px'}}>
-            <div style={{display: 'flex', zIndex: 4, boxShadow: " 2px 2px 10px rgb(0,118,220,0.2) ", borderRadius: "10px"}}>
-                        <div onClick={() => setView("list")} style={{width: "80px", height: "45px", display: 'flex', borderRadius: "10px 0px 0px 10px",justifyContent: 'center', alignItems: "center", background: view == "list" ? "white" : "transparent", boxShadow: view == "list" ? " 2px 2px 10px rgb(0,118,220,0.4) " : "none", cursor: 'pointer'}}>
-                            <Text style={{paddingTop: '5px', color: "#333"}}><UnorderedListOutlined style={{fontSize: "20px"}}/></Text>
-                        </div>
-                        <div onClick={() => setView("clock")} style={{width: "80px", height: "45px", display: 'flex', justifyContent: 'center', alignItems: "center", background: view == "clock" ? "white" : "transparent", boxShadow: view == "clock" ? " 2px 2px 10px rgb(0,118,220,0.4) " : "none", cursor: 'pointer'}}>
-                            <Text style={{paddingTop: '5px', color: "#333"}}><ClockCircleOutlined style={{fontSize: "20px"}} /></Text>
-                        </div>
-                        <div onClick={() => setView("calendar")} style={{width: "80px", height: "45px", display: 'flex', borderRadius: "0px 10px 10px 0px",justifyContent: 'center', alignItems: "center", background: view == "calendar" ? "white" : "transparent", boxShadow: view == "calendar" ? " 2px 2px 10px rgb(0,118,220,0.4) " : "none", cursor: 'pointer'}}>
-                            <Text style={{paddingTop: '3px', color: "#333"}}><CalendarOutlined style={{fontSize: "20px"}} /></Text>
-                        </div>
+        
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: "100%", position: 'fixed', bottom: '30px'}}>
+                <div style={{display: 'flex', zIndex: 4, boxShadow: " 2px 2px 10px rgb(0,118,220,0.2) ", borderRadius: "10px"}}>
+                            <div onClick={() => setView("list")} style={{width: "80px", height: "45px", display: 'flex', borderRadius: "10px 0px 0px 10px",justifyContent: 'center', alignItems: "center", background: view == "list" ? "white" : "transparent", boxShadow: view == "list" ? " 2px 2px 10px rgb(0,118,220,0.4) " : "none", cursor: 'pointer'}}>
+                                <Text style={{paddingTop: '5px', color: "#333"}}><UnorderedListOutlined style={{fontSize: "20px"}}/></Text>
+                            </div>
+                            <div onClick={() => setView("clock")} style={{width: "80px", height: "45px", display: 'flex', justifyContent: 'center', alignItems: "center", background: view == "clock" ? "white" : "transparent", boxShadow: view == "clock" ? " 2px 2px 10px rgb(0,118,220,0.4) " : "none", cursor: 'pointer'}}>
+                                <Text style={{paddingTop: '5px', color: "#333"}}><ClockCircleOutlined style={{fontSize: "20px"}} /></Text>
+                            </div>
+                            <div onClick={() => setView("calendar")} style={{width: "80px", height: "45px", display: 'flex', borderRadius: "0px 10px 10px 0px",justifyContent: 'center', alignItems: "center", background: view == "calendar" ? "white" : "transparent", boxShadow: view == "calendar" ? " 2px 2px 10px rgb(0,118,220,0.4) " : "none", cursor: 'pointer'}}>
+                                <Text style={{paddingTop: '3px', color: "#333"}}><CalendarOutlined style={{fontSize: "20px"}} /></Text>
+                            </div>
+                </div>
             </div>
-        </div>
 
-        </div>
+        </Div100vh>
     )
 }
 
