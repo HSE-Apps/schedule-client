@@ -1,1 +1,13 @@
 @import '~antd/dist/antd.css';
+
+.calendar-box{
+    opacity: 0.8;
+}
+
+.calendar-box:hover{
+    opacity: 1
+}
+
+.calendar-box:active:{
+    opacity: 1;
+}

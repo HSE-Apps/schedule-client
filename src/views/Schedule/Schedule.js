@@ -1,4 +1,8 @@
-import React, {useEffect, useState} from 'react'
+import React, {useContext, useEffect, useRef, useState} from 'react'
+
+import { CalendarOutlined, ClockCircleOutlined, UnorderedListOutlined} from '@ant-design/icons';
+
+import {Typography} from 'antd'
 
 import Progress from './Progress'
 
@@ -6,6 +10,14 @@ import Navbar from '../Shared/Navbar'
 
 import dayjs from 'dayjs'
 
+import CalendarSchedule from '../Calendar/Calendar'
+
+
+import SettingsContext from '../../contexts/SettingsContext'
+
+import {motion, useAnimation} from 'framer-motion'
+
+const {Text} = Typography
 
 var customParseFormat = require('dayjs/plugin/customParseFormat')
 
@@ -13,11 +25,49 @@ dayjs.extend(customParseFormat)
 
 
 const mockData = [
+
+
     {
-        periodName: "Period 8",
-        startTime: "9:23 PM",
-        endTime: "9:29 PM"
+        periodName: "Period 4",
+        startTime: "6:00 PM",
+        endTime: "7:45 PM",
+    }, {
+        periodName: "Passing Period",
+        startTime: "5:45 PM",
+        endTime: "5:46 PM",
+        isPassing: true
+    },    {
+        periodName: "Period 5",
+        startTime: "5:46 PM",
+        endTime: "5:50 PM",
+        lunchPeriods: {
+            A: {
+                startTime: "5:46 PM",
+                endTime: "5:47 PM"
+            },
+            B: {
+                startTime: "5:47 PM",
+                endTime: "5:48 PM"
+            },
+            C: {
+                startTime: "5:49 PM",
+                endTime: "5:50 PM"
+            },
+        },
+        
+    },{
+        periodName: "Passing Period",
+        startTime: "5:50 PM",
+        endTime: "5:51 PM",
+        isPassing: true
     },
+    {
+        periodName: "Period 6",
+        startTime: "5:51 PM",
+        endTime: "5:53 PM",
+    },
+
+    
 ]
 
 
@@ -25,8 +75,12 @@ const Schedule = () => {
 
     const [schedule, setSchedule] = useState(null)
     const [period, setPeriod] = useState(null)
+    const [nextPeriod, setNextPeriod] = useState(null)
     const [currentTime, setCurrentTime] = useState(dayjs().valueOf())
-    const [status, setStatus] = useState('SCHOOL_NOW')
+    const [status, setStatus] = useState('LOADING')
+
+
+    const [view, setView] = useState('clock')
 
     const getPeriod = () => {
 
@@ -40,12 +94,26 @@ const Schedule = () => {
             setStatus('AFTER_SCHOOL')
         }
 
-        schedule.forEach(period => {
+        schedule.forEach((period, index) => {
             if(currentTime >= period.startTimeUnix && currentTime < period.endTimeUnix){
-                console.log(period)
+                setStatus('SCHOOL_NOW')
                 setPeriod(period)
+                
+                try{
+                    if(period.isPassing){
+                        setNextPeriod(schedule[index+1])
+                    } else {
+                        setNextPeriod(schedule[index+2])
+
+                    }
+
+                } catch {
+                    setNextPeriod(null)
+                }
+
             }
         })
+
     }
 
     const fetchSchedule = async () => {
@@ -55,6 +123,25 @@ const Schedule = () => {
         let scheduleWithUnix = []
 
         fetchedSchedule.forEach(period => {
+
+
+            if(period.lunchPeriods){
+
+                let lunchPeriods = {}
+
+                for(let key in period.lunchPeriods){
+
+                    lunchPeriods[key] = ({
+                        ... period.lunchPeriods[key],
+                        startTimeUnix: dayjs(period.lunchPeriods[key].startTime, 'h mm A').valueOf(),
+                        endTimeUnix: dayjs(period.lunchPeriods[key].endTime, 'h mm A').valueOf(),
+                    })
+                }
+
+                period.lunchPeriods = lunchPeriods
+               
+            }
+
             scheduleWithUnix.push({
                 ...period,
                 startTimeUnix: dayjs(period.startTime, 'h mm A').valueOf(),
@@ -81,23 +168,53 @@ const Schedule = () => {
     }, [schedule])
 
     const timer = () => {
+
+
         setCurrentTime(dayjs().valueOf())
-        setTimeout(() => timer(), 50)
+        getPeriod()
+        setTimeout(() => timer(), 250)
     }
 
     return(
         <>
         <Navbar/>
-        <div style={{background: "#fafcff", display:"flex",flexDirection:"row",height:"calc(100vh - 60px)", width: "100%", alignItems: 'center', justifyContent: 'center'}}>
-            {schedule && period ?
+
+
+        <div style={{background: "#fafcff", display:"flex",flexDirection:"row",height:"calc(100vh - 140px)", width: "100%", alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
+            {view == "clock" &&
+            <>
                 {
-                    'SCHOOL_NOW': <Progress currentTime={currentTime} period={period} getPeriod={getPeriod}/>,
-                    'BEFORE_SCHOOL': <h1>before</h1>,
-                    'AFTER_SCHOOL': <h1>after</h1>
-                }[status]
-            :
-            <>loading</>
+    
+                    {
+                        'SCHOOL_NOW':<Progress currentTime={currentTime} period={period} getPeriod={getPeriod} nextPeriod={nextPeriod}/> ,
+                        'BEFORE_SCHOOL': <h1>before</h1>,
+                        'AFTER_SCHOOL': <h1>after</h1>,
+                        'LOADING': <h1>loading</h1>
+                    }[status]
+    
+                }
+            </>
             }
+
+            {view == "calendar" && 
+            <>
+                <CalendarSchedule/>
+            </>
+            }
+        </div>
+
+        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: "80px"}}>
+            <div style={{display: 'flex', zIndex: 4, boxShadow: " 2px 2px 10px rgb(0,118,220,0.2) ", borderRadius: "10px"}}>
+                        <div onClick={() => setView("list")} style={{width: "80px", height: "45px", display: 'flex', borderRadius: "10px 0px 0px 10px",justifyContent: 'center', alignItems: "center", background: view == "list" ? "white" : "transparent", boxShadow: view == "list" ? " 2px 2px 10px rgb(0,118,220,0.4) " : "none", cursor: 'pointer'}}>
+                            <Text style={{paddingTop: '5px', color: "#333"}}><UnorderedListOutlined style={{fontSize: "20px"}}/></Text>
+                        </div>
+                        <div onClick={() => setView("clock")} style={{width: "80px", height: "45px", display: 'flex', justifyContent: 'center', alignItems: "center", background: view == "clock" ? "white" : "transparent", boxShadow: view == "clock" ? " 2px 2px 10px rgb(0,118,220,0.4) " : "none", cursor: 'pointer'}}>
+                            <Text style={{paddingTop: '5px', color: "#333"}}><ClockCircleOutlined style={{fontSize: "20px"}} /></Text>
+                        </div>
+                        <div onClick={() => setView("calendar")} style={{width: "80px", height: "45px", display: 'flex', borderRadius: "0px 10px 10px 0px",justifyContent: 'center', alignItems: "center", background: view == "calendar" ? "white" : "transparent", boxShadow: view == "calendar" ? " 2px 2px 10px rgb(0,118,220,0.4) " : "none", cursor: 'pointer'}}>
+                            <Text style={{paddingTop: '3px', color: "#333"}}><CalendarOutlined style={{fontSize: "20px"}} /></Text>
+                        </div>
+            </div>
         </div>
 
         </>
