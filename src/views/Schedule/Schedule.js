@@ -33,39 +33,15 @@ const mockData = [
         endTime: "7:45 PM",
     }, {
         periodName: "Passing Period",
-        startTime: "5:45 PM",
-        endTime: "5:46 PM",
-        isPassing: true
-    },    {
-        periodName: "Period 5",
-        startTime: "5:46 PM",
-        endTime: "5:50 PM",
-        lunchPeriods: {
-            A: {
-                startTime: "5:46 PM",
-                endTime: "5:47 PM"
-            },
-            B: {
-                startTime: "5:47 PM",
-                endTime: "5:48 PM"
-            },
-            C: {
-                startTime: "5:49 PM",
-                endTime: "5:50 PM"
-            },
-        },
-        
-    },{
-        periodName: "Passing Period",
-        startTime: "5:50 PM",
-        endTime: "5:51 PM",
+        startTime: "7:45 PM",
+        endTime: "7:50 PM",
         isPassing: true
     },
     {
-        periodName: "Period 6",
-        startTime: "5:51 PM",
-        endTime: "5:53 PM",
-    },
+        periodName: "Period 5",
+        startTime: "7:50 PM",
+        endTime: "7:55 PM",
+    }, 
 
     
 ]
