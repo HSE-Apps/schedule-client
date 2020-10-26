@@ -152,7 +152,7 @@ const Schedule = () => {
     }
 
     return(
-        <>
+        <div style={{height: '100vh', display: 'flex', justifyContent:'space-between'}}>
         <Navbar/>
 
 
@@ -193,7 +193,7 @@ const Schedule = () => {
             </div>
         </div>
 
-        </>
+        </div>
     )
 }
 
