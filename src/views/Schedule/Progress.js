@@ -80,7 +80,7 @@ const ProgressSchedule = ({currentTime, period,nextPeriod}) => {
         let secondsLeft = dayjs.duration(diffFromEnd, 'ms').seconds()
 
 
-        return(`${hoursLeft ? hoursLeft +":" : ""}${minutesLeft > 9 && hoursLeft > 0 ? minutesLeft : "0" + minutesLeft}:${secondsLeft > 9 ? secondsLeft : "0" + secondsLeft}`)
+        return(`${hoursLeft > 0? hoursLeft +":" : ""}${minutesLeft > 9 ? minutesLeft :  hoursLeft > 0 ? "0" + minutesLeft : minutesLeft}:${secondsLeft > 9 ? secondsLeft : "0" + secondsLeft}`)
 
     }
 
