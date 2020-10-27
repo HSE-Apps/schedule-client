@@ -242,7 +242,7 @@ const Schedule = () => {
 
                                 </div>
                                 {/* <Title level={2} style={{color: 'white', position: 'absolute', textAlign: 'center'}}>  {status}</Title> */}
-                                <img src={Morning} className="bright" style={{width: mobile ? '90% ':"80%",maxWidth: '850px'}}/>
+                                <img src={Morning} className="bright" style={{margin: '5px',width: mobile ? '90% ':"80%",maxWidth: '850px'}}/>
                             </div>,
                         'BEFORE_SCHOOL_NIGHT':
                         <div style={{position: 'static', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
@@ -251,7 +251,7 @@ const Schedule = () => {
                                     <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400, filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>{dayjs(currentTime).format('h:mm A')}</h1>
 
                                 </div>
-                                <img src={Night} style={{width: mobile ? '90% ':"80%",maxWidth: '850px', filter: "drop-shadow(0px 0px 10px rgb(82,79,153,0.8)"}}/>
+                                <img src={Night} style={{margin: '5px',width: mobile ? '90% ':"80%",maxWidth: '850px', filter: "drop-shadow(0px 0px 10px rgb(82,79,153,0.8)"}}/>
                             </div> ,
                         'AFTER_SCHOOL_NIGHT': 
                         <div style={{position: 'static', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
@@ -260,7 +260,7 @@ const Schedule = () => {
                                     <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400, filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>{dayjs(currentTime).format('h:mm A')}</h1>
 
                                 </div>
-                                <img src={Night} style={{width: mobile ? '90% ':"80%",maxWidth: '850px', filter: "drop-shadow(0px 0px 10px rgb(82,79,153,0.8)"}}/>
+                                <img src={Night} style={{margin: '5px',width: mobile ? '90% ':"80%",maxWidth: '850px', filter: "drop-shadow(0px 0px 10px rgb(82,79,153,0.8)"}}/>
                             </div>,
                         'AFTER_SCHOOL_SUNDOWN': 
                         <div style={{position: 'static', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
@@ -269,7 +269,7 @@ const Schedule = () => {
                                     <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400, filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>{dayjs(currentTime).format('h:mm A')}</h1>
 
                                 </div>
-                                <img src={Sundown} style={{width: mobile ? '90% ':"80%",maxWidth: '850px', filter: "drop-shadow(0px 0px 10px rgb(230,114,124,0.8)"}}/>
+                                <img src={Sundown} style={{margin: '5px',width: mobile ? '90% ':"80%",maxWidth: '850px', filter: "drop-shadow(0px 0px 10px rgb(230,114,124,0.8)"}}/>
                             </div>,
                         'AFTER_SCHOOL_DAYTIME': 
                         <div style={{position: 'static', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
@@ -278,7 +278,7 @@ const Schedule = () => {
                                     <h1 style={{color: "white",fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400, filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>{dayjs(currentTime).format('h:mm A')}</h1>
 
                                 </div>
-                                <img src={Daytime} style={{width: mobile ? '90% ':"80%",maxWidth: '850px', transform: "rotate('-90deg')",filter: "drop-shadow(0px 0px 10px rgb(128,203,233,0.8)"}}/>
+                                <img src={Daytime} style={{margin: '5px', width: mobile ? '90% ':"80%",maxWidth: '850px', transform: "rotate('-90deg')",filter: "drop-shadow(0px 0px 10px rgb(128,203,233,0.8)"}}/>
                             </div> ,
 
                         'LOADING': <h1>loading</h1>
