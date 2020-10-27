@@ -12,3 +12,7 @@
 .calendar-box:active:{
     opacity: 1;
 }
+
+.ant-picker-calendar.ant-picker-calendar-full .ant-picker-panel{
+    background: #fafcff
+}

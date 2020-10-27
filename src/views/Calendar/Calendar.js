@@ -30,13 +30,10 @@ const CalendarSchedule = () => {
         <>
             <div style={{width: "100%", display: "flex", justifyContent: 'center', alignItems: 'center', height: "calc(100vh - 100px)"}}>
                     <Calendar 
-                    mode="month" 
-                    onPanelChange={(e) => {
-
-                    }}
-                    
+                    className="calendar"
+                    mode="month"                     
                     headerRender={({ value, type, onChange, onTypeChange }) => 
-                    <div style={{display: 'flex', width: "100%", justifyContent: 'space-between'}}>
+                    <div style={{display: 'flex', width: "100%", justifyContent: 'space-between', background: '#fafcff'}}>
                         <Title level={mobile ? 3 : 2} style={{color: "#333", fontWeight: "400"}}>{value.format('MMMM')} {value.format('Y')}</Title>
 
                         <div style={{display: 'flex', justifyContent: 'space-between', width: '50px'}}>
@@ -91,7 +88,7 @@ const CalendarSchedule = () => {
                         let monthOfDate = date.format("M")
 
                         if(parseInt(monthOfDate) - 1 != month){
-                            return<></>
+                            return <></>
                         }
 
                         if(dayOfWeek == "Sunday" || dayOfWeek == "Saturday" ){
@@ -118,7 +115,7 @@ const CalendarSchedule = () => {
                                         <Text style={{paddingRight: "12px", color: "#ff7875"}}>{dayOfMonth}</Text>
                                 </div>
                             )
-                        }
+                        } 
                     }}
                         />
             </div>
