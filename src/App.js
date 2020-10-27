@@ -38,7 +38,6 @@ function App() {
     <SettingsContext.Provider value={{settings, setSettings}}>
       <Router>
         <Route exact path="/" component={Schedule}/>
-        <Route exact path="/calendar" component={CalendarSchedule}/>
       </Router>
     </SettingsContext.Provider>
 
