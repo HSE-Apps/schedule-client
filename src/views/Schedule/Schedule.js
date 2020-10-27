@@ -6,6 +6,9 @@ import {Typography} from 'antd'
 
 import Progress from './Progress'
 
+import Periods from './Periods'
+
+
 import Navbar from '../Shared/Navbar'
 
 import dayjs from 'dayjs'
@@ -291,6 +294,12 @@ const Schedule = () => {
             {view == "calendar" && 
             <>
                 <CalendarSchedule/>
+            </>
+            }
+
+            {view == 'list' && 
+            <>
+                <Periods periods={mockData}/>
             </>
             }
         </div>
