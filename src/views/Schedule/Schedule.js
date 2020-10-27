@@ -17,7 +17,7 @@ import SettingsContext from '../../contexts/SettingsContext'
 
 import {motion, useAnimation} from 'framer-motion'
 
-import Div100vh from 'react-div-100vh'
+import Div100vh,{use100vh} from 'react-div-100vh'
 
 const {Text} = Typography
 
@@ -59,6 +59,8 @@ const Schedule = () => {
 
 
     const [view, setView] = useState('clock')
+
+    const vh = use100vh()
 
     const getPeriod = () => {
 
@@ -158,7 +160,7 @@ const Schedule = () => {
         <Navbar/>
 
 
-        <div style={{background: "#fafcff", display:"flex",flexDirection:"row",height:"calc(100vh - 140px)", width: "100%", alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
+        <div style={{background: "#fafcff", display:"flex",flexDirection:"row",height:vh - 65, width: "100%", alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
             {view == "clock" &&
             <>
                 {
