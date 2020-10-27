@@ -137,7 +137,7 @@ const ProgressSchedule = ({currentTime, period,nextPeriod}) => {
     return(
         <>
             <Progress
-                width={mobile ? window.screen.width * .7 : 500}
+                width={mobile ? window.innerWidth * .7 : 500}
                 type="circle"
                 format={() => 
                 <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
