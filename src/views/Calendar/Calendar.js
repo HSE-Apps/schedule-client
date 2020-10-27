@@ -2,11 +2,15 @@ import React, { useState } from 'react'
 
 import {Calendar, Typography, Divider} from 'antd'
 
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+
+
 import Navbar from '../Shared/Navbar'
 
 import useMedia from '../../hooks/useMedia'
+import { setApiKey } from '@sendgrid/mail';
 
-const {Text} = Typography
+const {Text, Title} = Typography
 
 let mockData = {
     noSchool: {
@@ -19,7 +23,8 @@ const CalendarSchedule = () => {
     const mobile = useMedia(['(min-width: 750px)', '(max-width: 750px)'], [false, true])
 
 
-    const [month, setMonth] = useState("October")
+    const [month, setMonth] = useState(9)
+    const [year, setYear] = useState(2020)
 
 
     return (
@@ -28,24 +33,66 @@ const CalendarSchedule = () => {
                     <Calendar 
                     mode="month" 
                     onPanelChange={(e) => {
-                        console.log(e.format('MMMM'))
-                        setMonth(e.format('MMMM'))
+
                     }}
                     
+                    headerRender={({ value, type, onChange, onTypeChange }) => 
+                    <div style={{display: 'flex', width: "100%", justifyContent: 'space-between'}}>
+                        <Title level={mobile ? 3 : 2} style={{color: "#333", fontWeight: "400"}}>{value.format('MMMM')} {value.format('Y')}</Title>
+
+                        <div style={{display: 'flex', justifyContent: 'space-between', width: '50px'}}>
+                            <LeftOutlined onClick={() => {
+                                let temp = value.clone()
+
+                                if(month == 0){
+                                    temp.month(11)
+                                    setMonth(11)
+                                    temp.year(year - 1)
+
+                                    setYear(year -1)
+                                } else {
+                                    temp.month(month-1)
+                                    setMonth(month-1)
+                                }
+                                
+
+                                onChange(temp)
+                                }} style={{fontSize: "20px"}}
+                            />
+                            <RightOutlined onClick={() => {
+                                  let temp = value.clone()
+
+                                  if(month == 11){
+                                    temp.month(0)
+                                    setMonth(0)
+                                    temp.year(year + 1)
+                                    setYear(year + 1)
+
+                                  } else {
+                                    temp.month(month+1)
+                                    setMonth(month+1)
+                                  }
+                            
+                                
+                                  onChange(temp)
+                                }} style={{fontSize: "20px"}}
+                            />
+                        </div>
+                            
+                        
+                    </div>
+                    }
+
                     style={{width: mobile ? '90%' : "80%", maxWidth: "1200px"}}
 
                     dateFullCellRender={(date) => {
                         let dayOfWeek = date.format('dddd')
                         let dayOfMonth = date.format('D')
 
-                        let monthOfDate = date.format("MMMM")
+                        let monthOfDate = date.format("M")
 
-                        if(monthOfDate != month){
-                            return(
-                                <div className="calendar-box" style={{width: "100%", height: mobile ? "40px" : "100px", paddingRight: "12px"}}>
-                                    <Divider style={{marginBottom: "5px", marginTop: "10px"}}/>
-                                </div>
-                            )
+                        if(parseInt(monthOfDate) - 1 != month){
+                            return<></>
                         }
 
                         if(dayOfWeek == "Sunday" || dayOfWeek == "Saturday" ){

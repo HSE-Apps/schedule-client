@@ -143,18 +143,18 @@ const ProgressSchedule = ({currentTime, period,nextPeriod}) => {
                 <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                     {genText() || 'loading'}
                 {period.isPassing ? 
-                <Text type="secondary" style={{fontSize: "24px", marginTop: "10px", wordSpacing: "3px"}}>Until {nextPeriod ? nextPeriod.periodName + " Begins" : 'School Ends'}</Text>
+                <Text type="secondary" style={{fontSize: "1.1rem", marginTop: "10px", wordSpacing: "3px"}}>Until {nextPeriod ? nextPeriod.periodName + " Begins" : 'School Ends'}</Text>
 
                 :
                     <>
                     {period.lunchPeriods ?
                         {
-                            'DURING':  <Text type="secondary" style={{fontSize: "24px", marginTop: "10px", wordSpacing: "3px"}}> Until {settings.lunch} Lunch Ends </Text>,
-                            'BEFORE':  <Text type="secondary" style={{fontSize: "24px", marginTop: "10px", wordSpacing: "3px"}}>Until {settings.lunch} Lunch Begins</Text>,
-                            'AFTER':  <Text type="secondary" style={{fontSize: "24px", marginTop: "10px", wordSpacing: "3px"}}>{nextPeriod ? `Until ${period.periodName} Ends` : "Until School Ends"}</Text>,
+                            'DURING':  <Text type="secondary" style={{fontSize: "1.1rem", marginTop: "10px", wordSpacing: "3px"}}> Until {settings.lunch} Lunch Ends </Text>,
+                            'BEFORE':  <Text type="secondary" style={{fontSize: "1.1rem", marginTop: "10px", wordSpacing: "3px"}}>Until {settings.lunch} Lunch Begins</Text>,
+                            'AFTER':  <Text type="secondary" style={{fontSize: "1.1rem", marginTop: "10px", wordSpacing: "3px"}}>{nextPeriod ? `Until ${period.periodName} Ends` : "Until School Ends"}</Text>,
                         }[lunchStatus()]
                     :
-                    <Text type="secondary" style={{fontSize: "24px", marginTop: "10px", wordSpacing: "3px"}}>{nextPeriod ? `Until ${period.periodName} Ends` : "Until School Ends"}</Text>
+                    <Text type="secondary" style={{fontSize: "1.1rem", marginTop: "10px", wordSpacing: "3px"}}>{nextPeriod ? `Until ${period.periodName} Ends` : "Until School Ends"}</Text>
 
                     }
                     </>
@@ -162,7 +162,7 @@ const ProgressSchedule = ({currentTime, period,nextPeriod}) => {
 
                 </div>
                 }
-                strokeWidth="3.5"
+                strokeWidth={mobile ? 4.5 : 3.5}
                 strokeColor={{
                     '10%': settings.color.to,
                     '100%': settings.color.from,
