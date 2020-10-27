@@ -160,7 +160,7 @@ const Schedule = () => {
         <Navbar/>
 
 
-        <div style={{background: "#fafcff", display:"flex",flexDirection:"row",height:vh - 75, width: "100%", alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
+        <div style={{background: "#fafcff", display:"flex",flexDirection:"row",height:vh - 75, width: "100%", alignItems: 'center', justifyContent: 'center', flexDirection: 'column', paddingBottom: "80px"}}>
             {view == "clock" &&
             <>
                 {
