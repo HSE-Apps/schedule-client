@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 import { Row, Col, Typography, Button, Dropdown, Drawer,Menu, Avatar, Modal, Input, Radio} from 'antd';
 
-import { UserOutlined, SearchOutlined, LogoutOutlined, MenuOutlined, SettingOutlined, LinkOutlined} from '@ant-design/icons';
+import { GithubOutlined, InstagramOutlined, LogoutOutlined, MenuOutlined, SettingOutlined, LinkOutlined} from '@ant-design/icons';
 
 
 import logo from '../../img/hseapps.png'
@@ -122,6 +122,16 @@ const Navbar = ({history}) => {
 
           </Radio.Group>
         </div>
+
+        <div style={{width: '100%', textAlign:'center', marginTop: "30px"}}>
+                    <Text style={{fontSize: '12px'}}>Made by HSE Apps</Text>
+                    <br></br>
+                    <Text style={{fontSize: '18px'}}>
+                    <a target="_blank" href="https://instagram.com/hseapps"><InstagramOutlined style={{marginRight: '8px'}}></InstagramOutlined></a>
+                    <a target="_blank" href="https://github.com/HSE-Apps"><GithubOutlined style={{marginRight: '5px'}}></GithubOutlined></a>
+                    </Text>
+
+                </div>
       
       </Modal>
     </>
