@@ -8,7 +8,6 @@ import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import Navbar from '../Shared/Navbar'
 
 import useMedia from '../../hooks/useMedia'
-import { setApiKey } from '@sendgrid/mail';
 
 const {Text, Title} = Typography
 
