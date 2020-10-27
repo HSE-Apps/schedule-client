@@ -143,7 +143,12 @@ const ProgressSchedule = ({currentTime, period,nextPeriod}) => {
                 <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                     {genText() || 'loading'}
                 {period.isPassing ? 
-                <Text type="secondary" style={{fontSize: "1.1rem", marginTop: "10px", wordSpacing: "3px"}}>Until {nextPeriod ? nextPeriod.periodName + " Begins" : 'School Ends'}</Text>
+
+                nextPeriod?.lunchPeriods && settings.lunch == "A" ?
+                <Text type="secondary" style={{fontSize: "1.1rem", marginTop: "10px", wordSpacing: "3px"}}>To Get to A Lunch</Text>
+
+                :
+                <Text type="secondary" style={{fontSize: "1.1rem", marginTop: "10px", wordSpacing: "3px"}}>Until {nextPeriod.periodName} Begins</Text>
 
                 :
                     <>

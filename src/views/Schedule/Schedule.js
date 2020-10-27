@@ -12,12 +12,19 @@ import dayjs from 'dayjs'
 
 import CalendarSchedule from '../Calendar/Calendar'
 
+import useMedia from '../../hooks/useMedia'
 
 import SettingsContext from '../../contexts/SettingsContext'
 
 import {motion, useAnimation} from 'framer-motion'
 
 import Div100vh,{use100vh} from 'react-div-100vh'
+
+import Morning from '../../img/Landscapes/Morning.png'
+import Daytime from '../../img/Landscapes/Daytime.png'
+import Sundown from '../../img/Landscapes/Sundown.png'
+import Night from '../../img/Landscapes/Night.png'
+import Title from 'antd/lib/skeleton/Title';
 
 const {Text} = Typography
 
@@ -30,20 +37,64 @@ const mockData = [
 
 
     {
-        periodName: "Period 4",
-        startTime: "6:00 PM",
-        endTime: "7:45 PM",
+        periodName: "Period 5",
+        startTime: "7:30 AM",
+        endTime: "8:55 AM",
     }, {
         periodName: "Passing Period",
-        startTime: "7:45 PM",
-        endTime: "7:50 PM",
+        startTime: "8:55 AM",
+        endTime: "9:02 AM",
         isPassing: true
     },
     {
-        periodName: "Period 5",
-        startTime: "7:50 PM",
-        endTime: "11:55 PM",
+        periodName: "Smart",
+        startTime: "9:02 AM",
+        endTime: "9:35 AM",
+    }, {
+        periodName: "Passing Period",
+        startTime: "9:35 AM",
+        endTime: "9:42 AM",
+        isPassing: true
+    }, {
+        periodName: "Period 6",
+        startTime: "9:42 AM",
+        endTime: "11:07 AM",
+    },
+    {
+        periodName: "Passing Period",
+        startTime: "11:07 AM",
+        endTime: "11:14 AM",
+        isPassing: true
+    },
+    {
+        periodName: "Period 7",
+        startTime: "11:14 AM",
+        endTime: "1:09 PM",
+        lunchPeriods: {
+            A: {
+                startTime: "11:14 AM",
+                endTime: "11:37 AM"
+            },
+            B: {
+                startTime: "11:53 AM",
+                endTime: "12:23 PM"
+            },
+            C: {
+                startTime: "12:39 PM",
+                endTime: "1:09 PM"
+            },
+        }
+    }, {
+        periodName: "Passing Period",
+        startTime: "1:09 PM",
+        endTime: "1:16 PM",
+        isPassing: true
     }, 
+    {
+        periodName: "Clubs",
+        startTime: "1:16 PM",
+        endTime: "2:00 PM",
+    }
 
     
 ]
@@ -58,6 +109,9 @@ const Schedule = () => {
     const [status, setStatus] = useState('LOADING')
 
 
+    const mobile = useMedia(['(min-width: 750px)', '(max-width: 750px)'], [false, true])
+
+
     const [view, setView] = useState('clock')
 
     const vh = use100vh()
@@ -65,13 +119,26 @@ const Schedule = () => {
     const getPeriod = () => {
 
         let currentTime = dayjs().valueOf()
+
         let beforeSchool = currentTime < schedule[0].startTimeUnix
         let afterSchool = currentTime > schedule[schedule.length - 1].endTimeUnix
 
         if(beforeSchool){
-            setStatus('BEFORE_SCHOOL')
+            if(currentTime >= dayjs('6:30 AM', 'h mm A').valueOf()){
+                setStatus('BEFORE_SCHOOL_MORNING')
+            } else {
+                setStatus('BEFORE_SCHOOL_NIGHT')
+            }
         } else if (afterSchool) {
-            setStatus('AFTER_SCHOOL')
+            if(currentTime > dayjs('8:00 PM', 'h mm A').valueOf()){
+                setStatus('AFTER_SCHOOL_NIGHT')
+            } else if (currentTime > dayjs('6:00 PM', 'h mm A').valueOf()){
+                setStatus('AFTER_SCHOOL_SUNDOWN')
+
+            } else {
+                setStatus('AFTER_SCHOOL_DAYTIME')
+
+            }
         }
 
         schedule.forEach((period, index) => {
@@ -148,7 +215,7 @@ const Schedule = () => {
     }, [schedule])
 
     const timer = () => {
-
+        console.log("wow")
 
         setCurrentTime(dayjs().valueOf())
         getPeriod()
@@ -167,8 +234,53 @@ const Schedule = () => {
     
                     {
                         'SCHOOL_NOW':<Progress currentTime={currentTime} period={period} getPeriod={getPeriod} nextPeriod={nextPeriod}/> ,
-                        'BEFORE_SCHOOL': <h1>before</h1>,
-                        'AFTER_SCHOOL': <h1>after</h1>,
+                        'BEFORE_SCHOOL_MORNING': 
+                            <div style={{position: 'relative', display:'flex', justifyContent: 'center'}}>
+                                <div style={{marginTop: "0px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
+                                    <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400,filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.7)"}}>School Hasn't Begun</h1>
+                                    <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400, filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.7)"}}>{dayjs(currentTime).format('h:mm A')}</h1>
+
+                                </div>
+                                {/* <Title level={2} style={{color: 'white', position: 'absolute', textAlign: 'center'}}>  {status}</Title> */}
+                                <img src={Morning} className="bright" style={{width: mobile ? '90% ':"80%",maxWidth: '850px'}}/>
+                            </div>,
+                        'BEFORE_SCHOOL_NIGHT':
+                        <div style={{position: 'relative', display:'flex', justifyContent: 'center'}}>                                
+                            <div style={{paddingBottom: "30px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
+                                    <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', fontWeight: 400,filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>School Hasn't Started</h1>
+                                    <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400, filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>{dayjs(currentTime).format('h:mm A')}</h1>
+
+                                </div>
+                                <img src={Night} style={{width: mobile ? '90% ':"80%",maxWidth: '850px', filter: "drop-shadow(0px 0px 10px rgb(82,79,153,0.8)"}}/>
+                            </div> ,
+                        'AFTER_SCHOOL_NIGHT': 
+                        <div style={{position: 'relative', display:'flex', justifyContent: 'center'}}>                                
+                                <div style={{paddingBottom: "30px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
+                                    <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', fontWeight: 400,filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>School Has Ended</h1>
+                                    <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400, filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>{dayjs(currentTime).format('h:mm A')}</h1>
+
+                                </div>
+                                <img src={Night} style={{width: mobile ? '90% ':"80%",maxWidth: '850px', filter: "drop-shadow(0px 0px 10px rgb(82,79,153,0.8)"}}/>
+                            </div>,
+                        'AFTER_SCHOOL_SUNDOWN': 
+                        <div style={{position: 'relative', display:'flex', justifyContent: 'center'}}>                                
+                                <div style={{paddingBottom: "40px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
+                                    <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400,filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>School Has Ended</h1>
+                                    <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400, filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>{dayjs(currentTime).format('h:mm A')}</h1>
+
+                                </div>
+                                <img src={Sundown} style={{width: mobile ? '90% ':"80%",maxWidth: '850px', filter: "drop-shadow(0px 0px 10px rgb(230,114,124,0.8)"}}/>
+                            </div>,
+                        'AFTER_SCHOOL_DAYTIME': 
+                        <div style={{position: 'relative', display:'flex', justifyContent: 'center'}}>                                
+                                <div style={{paddingBottom: "30px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
+                                    <h1 style={{color: "white",fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400,filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>School Has Ended</h1>
+                                    <h1 style={{color: "white",fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400, filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>{dayjs(currentTime).format('h:mm A')}</h1>
+
+                                </div>
+                                <img src={Daytime} style={{width: mobile ? '90% ':"80%",maxWidth: '850px', transform: "rotate('-90deg')",filter: "drop-shadow(0px 0px 10px rgb(128,203,233,0.8)"}}/>
+                            </div> ,
+
                         'LOADING': <h1>loading</h1>
                     }[status]
     
