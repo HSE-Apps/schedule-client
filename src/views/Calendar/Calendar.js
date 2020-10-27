@@ -103,16 +103,17 @@ const CalendarSchedule = () => {
                             )
                         } else if(mockData.redWednesday.includes(dayOfMonth) || (dayOfWeek == "Monday" || dayOfWeek == "Tuesday")){
                             return(
-                                <div className="calendar-box" style={{width: "100%",height: mobile ? "40px" : "100px", color: "#69c0ff", background: "#f2fbff"}}>
-                                        <Divider style={{marginBottom: "5px", marginTop: "10px", background: "#69c0ff", opacity: "0.15"}}/>
-                                        <Text style={{paddingRight: "12px", color: "#69c0ff"}}>{dayOfMonth}</Text>
+                                <div className="calendar-box" style={{width: "100%", height: mobile ? "40px" : "100px", color: "#ff7875", background: "#fff5f4"}}>
+                                    <Divider style={{marginBottom: "5px", marginTop: "10px", background: "#ff7875", opacity: "0.15"}}/>
+                                    <Text style={{paddingRight: "12px", color: "#ff7875"}}>{dayOfMonth}</Text>
                                 </div>
                             )
                         }else if(mockData.blueWednesday.includes(dayOfMonth) || (dayOfWeek == "Thursday" || dayOfWeek == "Friday")){
                             return(
-                                <div className="calendar-box" style={{width: "100%", height: mobile ? "40px" : "100px", color: "#ff7875", background: "#fff5f4"}}>
-                                        <Divider style={{marginBottom: "5px", marginTop: "10px", background: "#ff7875", opacity: "0.15"}}/>
-                                        <Text style={{paddingRight: "12px", color: "#ff7875"}}>{dayOfMonth}</Text>
+
+                                 <div className="calendar-box" style={{width: "100%",height: mobile ? "40px" : "100px", color: "#69c0ff", background: "#f2fbff"}}>
+                                    <Divider style={{marginBottom: "5px", marginTop: "10px", background: "#69c0ff", opacity: "0.15"}}/>
+                                    <Text style={{paddingRight: "12px", color: "#69c0ff"}}>{dayOfMonth}</Text>
                                 </div>
                             )
                         } 

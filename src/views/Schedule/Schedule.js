@@ -27,7 +27,6 @@ import Morning from '../../img/Landscapes/Morning.png'
 import Daytime from '../../img/Landscapes/Daytime.png'
 import Sundown from '../../img/Landscapes/Sundown.png'
 import Night from '../../img/Landscapes/Night.png'
-import Title from 'antd/lib/skeleton/Title';
 
 const {Text} = Typography
 
@@ -101,6 +100,33 @@ const mockData = [
 
     
 ]
+
+
+const periodV = {
+    hidden:{
+       opacity: 0
+    },
+    visible:{
+        opacity: 1,
+        transition: {
+            type: 'spring',
+            stiffness: 80,
+            when: "beforeChildren",
+            duration: .4
+        }
+    }
+}
+
+const periodText = {
+    hidden:{
+        opacity: 0
+    },
+    visible:{
+        opacity: 1,
+        
+    }
+}
+
 
 
 const Schedule = () => {
@@ -238,51 +264,51 @@ const Schedule = () => {
                     {
                         'SCHOOL_NOW':<Progress currentTime={currentTime} period={period} getPeriod={getPeriod} nextPeriod={nextPeriod}/> ,
                         'BEFORE_SCHOOL_MORNING': 
-                            <div style={{position: 'static', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
-                                <div style={{marginTop: "0px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
+                            <motion.div variants={periodV} initial="hidden" animate="visible"  style={{position: 'static', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
+                                <motion.div variants={periodText} style={{marginTop: "0px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
                                     <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400,filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.7)"}}>School Hasn't Begun</h1>
                                     <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400, filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.7)"}}>{dayjs(currentTime).format('h:mm A')}</h1>
 
-                                </div>
+                                </motion.div>
                                 {/* <Title level={2} style={{color: 'white', position: 'absolute', textAlign: 'center'}}>  {status}</Title> */}
                                 <img src={Morning} className="bright" style={{margin: '5px',width: mobile ? '90% ':"80%",maxWidth: '850px'}}/>
-                            </div>,
+                            </motion.div>,
                         'BEFORE_SCHOOL_NIGHT':
-                        <div style={{position: 'static', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
-                        <div style={{paddingBottom: "30px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
+                        <motion.div variants={periodV} initial="hidden" animate="visible"  style={{position: 'static', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        <motion.div variants={periodText} style={{paddingBottom: "30px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
                                     <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', fontWeight: 400,filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>School Hasn't Started</h1>
                                     <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400, filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>{dayjs(currentTime).format('h:mm A')}</h1>
 
-                                </div>
+                                </motion.div>
                                 <img src={Night} style={{margin: '5px',width: mobile ? '90% ':"80%",maxWidth: '850px', filter: "drop-shadow(0px 0px 10px rgb(82,79,153,0.8)"}}/>
-                            </div> ,
+                            </motion.div> ,
                         'AFTER_SCHOOL_NIGHT': 
-                        <div style={{position: 'static', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
-                        <div style={{paddingBottom: "30px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
+                        <motion.div variants={periodV} initial="hidden" animate="visible"  style={{position: 'static', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        <motion.div variants={periodText}style={{paddingBottom: "30px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
                                     <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', fontWeight: 400,filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>School Has Ended</h1>
                                     <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400, filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>{dayjs(currentTime).format('h:mm A')}</h1>
 
-                                </div>
+                                </motion.div>
                                 <img src={Night} style={{margin: '5px',width: mobile ? '90% ':"80%",maxWidth: '850px', filter: "drop-shadow(0px 0px 10px rgb(82,79,153,0.8)"}}/>
-                            </div>,
+                            </motion.div>,
                         'AFTER_SCHOOL_SUNDOWN': 
-                        <div style={{position: 'static', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
-                                <div style={{paddingBottom: "40px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
+                        <motion.div variants={periodV} initial="hidden" animate="visible"  style={{position: 'static', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        <motion.div variants={periodText} style={{paddingBottom: "40px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
                                     <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400,filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>School Has Ended</h1>
                                     <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400, filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>{dayjs(currentTime).format('h:mm A')}</h1>
 
-                                </div>
+                                </motion.div>
                                 <img src={Sundown} style={{margin: '5px',width: mobile ? '90% ':"80%",maxWidth: '850px', filter: "drop-shadow(0px 0px 10px rgb(230,114,124,0.8)"}}/>
-                            </div>,
+                            </motion.div>,
                         'AFTER_SCHOOL_DAYTIME': 
-                        <div style={{position: 'static', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
-                        <div style={{paddingBottom: "30px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
+                        <motion.div variants={periodV} initial="hidden" animate="visible"  style={{position: 'static', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        <motion.div variants={periodText} style={{paddingBottom: "30px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
                                     <h1 style={{color: "white",fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400,filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>School Has Ended</h1>
                                     <h1 style={{color: "white",fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400, filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>{dayjs(currentTime).format('h:mm A')}</h1>
 
-                                </div>
+                                </motion.div>
                                 <img src={Daytime} style={{margin: '5px', width: mobile ? '90% ':"80%",maxWidth: '850px', transform: "rotate('-90deg')",filter: "drop-shadow(0px 0px 10px rgb(128,203,233,0.8)"}}/>
-                            </div> ,
+                            </motion.div> ,
 
                         'LOADING': <h1>loading</h1>
                     }[status]
