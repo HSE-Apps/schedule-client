@@ -235,7 +235,7 @@ const Schedule = () => {
                     {
                         'SCHOOL_NOW':<Progress currentTime={currentTime} period={period} getPeriod={getPeriod} nextPeriod={nextPeriod}/> ,
                         'BEFORE_SCHOOL_MORNING': 
-                            <div style={{position: 'relative', display:'flex', justifyContent: 'center'}}>
+                            <div style={{position: 'static', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
                                 <div style={{marginTop: "0px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
                                     <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400,filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.7)"}}>School Hasn't Begun</h1>
                                     <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400, filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.7)"}}>{dayjs(currentTime).format('h:mm A')}</h1>
@@ -245,8 +245,8 @@ const Schedule = () => {
                                 <img src={Morning} className="bright" style={{width: mobile ? '90% ':"80%",maxWidth: '850px'}}/>
                             </div>,
                         'BEFORE_SCHOOL_NIGHT':
-                        <div style={{position: 'relative', display:'flex', justifyContent: 'center'}}>                                
-                            <div style={{paddingBottom: "30px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
+                        <div style={{position: 'static', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        <div style={{paddingBottom: "30px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
                                     <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', fontWeight: 400,filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>School Hasn't Started</h1>
                                     <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400, filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>{dayjs(currentTime).format('h:mm A')}</h1>
 
@@ -254,8 +254,8 @@ const Schedule = () => {
                                 <img src={Night} style={{width: mobile ? '90% ':"80%",maxWidth: '850px', filter: "drop-shadow(0px 0px 10px rgb(82,79,153,0.8)"}}/>
                             </div> ,
                         'AFTER_SCHOOL_NIGHT': 
-                        <div style={{position: 'relative', display:'flex', justifyContent: 'center'}}>                                
-                                <div style={{paddingBottom: "30px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
+                        <div style={{position: 'static', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        <div style={{paddingBottom: "30px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
                                     <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', fontWeight: 400,filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>School Has Ended</h1>
                                     <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400, filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>{dayjs(currentTime).format('h:mm A')}</h1>
 
@@ -263,7 +263,7 @@ const Schedule = () => {
                                 <img src={Night} style={{width: mobile ? '90% ':"80%",maxWidth: '850px', filter: "drop-shadow(0px 0px 10px rgb(82,79,153,0.8)"}}/>
                             </div>,
                         'AFTER_SCHOOL_SUNDOWN': 
-                        <div style={{position: 'relative', display:'flex', justifyContent: 'center'}}>                                
+                        <div style={{position: 'static', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
                                 <div style={{paddingBottom: "40px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
                                     <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400,filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>School Has Ended</h1>
                                     <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400, filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>{dayjs(currentTime).format('h:mm A')}</h1>
@@ -272,8 +272,8 @@ const Schedule = () => {
                                 <img src={Sundown} style={{width: mobile ? '90% ':"80%",maxWidth: '850px', filter: "drop-shadow(0px 0px 10px rgb(230,114,124,0.8)"}}/>
                             </div>,
                         'AFTER_SCHOOL_DAYTIME': 
-                        <div style={{position: 'relative', display:'flex', justifyContent: 'center'}}>                                
-                                <div style={{paddingBottom: "30px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
+                        <div style={{position: 'static', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        <div style={{paddingBottom: "30px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
                                     <h1 style={{color: "white",fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400,filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>School Has Ended</h1>
                                     <h1 style={{color: "white",fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400, filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>{dayjs(currentTime).format('h:mm A')}</h1>
 
