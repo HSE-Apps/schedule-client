@@ -80,7 +80,12 @@ const CalendarSchedule = () => {
                     }
 
                     style={{width: mobile ? '90%' : "80%", maxWidth: "1200px"}}
+                    disabledDate={(date) => {
+                        let monthOfDate = date.format("M")
 
+                        return (parseInt(monthOfDate) - 1 != month)
+
+                    }}
                     dateFullCellRender={(date) => {
                         let dayOfWeek = date.format('dddd')
                         let dayOfMonth = date.format('D')
