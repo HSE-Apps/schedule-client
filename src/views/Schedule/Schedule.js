@@ -27,7 +27,7 @@ import Morning from '../../img/Landscapes/Morning.png'
 import Daytime from '../../img/Landscapes/Daytime.png'
 import Sundown from '../../img/Landscapes/Sundown.png'
 import Night from '../../img/Landscapes/Night.png'
-import {wedSchedule, monThurSchedule, tuesFridSchedule} from './tempData'
+import {wedSchedule, monThurSchedule, tuesFridSchedule, specialSchedule} from './tempData'
 
 const {Text} = Typography
 
@@ -146,15 +146,21 @@ const Schedule = () => {
         let dayOfWeek = today.format('dddd')
         let dayOfMonth = today.format('D')
 
-        if(["Sunday", "Saturday"].includes(dayOfWeek) || scheduleData.noSchool.includes(dayOfMonth)){
-            // no school handles
-        } else if(["Monday", "Thursday"].includes(dayOfWeek)){
-            fetchedSchedule = monThurSchedule
-        } else if(["Tuesday", "Friday"].includes(dayOfWeek)){
-            fetchedSchedule = tuesFridSchedule
+        if(specialSchedule.length > 0){
+            fetchedSchedule = specialSchedule
         } else {
-            fetchedSchedule = wedSchedule
+            if(["Sunday", "Saturday"].includes(dayOfWeek) || scheduleData.noSchool.includes(dayOfMonth)){
+                // no school handles
+            } else if(["Monday", "Thursday"].includes(dayOfWeek)){
+                fetchedSchedule = monThurSchedule
+            } else if(["Tuesday", "Friday"].includes(dayOfWeek)){
+                fetchedSchedule = tuesFridSchedule
+            } else {
+                fetchedSchedule = wedSchedule
+            }
         }
+
+      
 
 
         let scheduleWithUnix = []

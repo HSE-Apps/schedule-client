@@ -64,10 +64,6 @@ export let tuesFridSchedule = [
     
 ]
 
-
-
-
-
 export let monThurSchedule = [
 
 
@@ -211,4 +207,10 @@ export let wedSchedule = [
         endTime: "2:00 PM",
     },
 
+]
+
+
+export let specialSchedule = [
+
+    
 ]
