@@ -107,9 +107,9 @@ const Navbar = ({history}) => {
 
         <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: "20px", marginTop: "3px"}}>
 
-          <Input value={settingsLocal.color.to} onChange={(e) => setSettingsLocal({...settingsLocal, color: {...settingsLocal.color, to: e.target.value}})} prefix={<div style={{width: '20px', height: '20px', background: settingsLocal.color.to, marginRight: "5px"}}></div>} placeholder="0% Color" style={{width: "45%"}}/>
+        <Input value={settingsLocal.color.to} onChange={(e) => setSettingsLocal({...settingsLocal, color: {...settingsLocal.color, to: e.target.value}})} prefix={<input onChange={(e) => setSettingsLocal({...settingsLocal, color: {...settingsLocal.color, to: e.target.value}})} value={settingsLocal.color.to} type="color" style={{width: '20px', height: '20px', background: settingsLocal.color.to, marginRight: "5px", border: "0px transparent", outline: "none", cursor: "pointer"}}></input>} placeholder="0% Color" style={{width: "45%"}}/>
 
-          <Input value={settingsLocal.color.from} onChange={(e) => setSettingsLocal({...settingsLocal, color: {...settingsLocal.color, from: e.target.value}})} prefix={<div style={{width: '20px', height: '20px', background: settingsLocal.color.from, marginRight: "5px"}}></div>} placeholder="0% Color" style={{width: "45%"}}/>
+          <Input value={settingsLocal.color.from} onChange={(e) => setSettingsLocal({...settingsLocal, color: {...settingsLocal.color, from: e.target.value}})} prefix={<input onChange={(e) => setSettingsLocal({...settingsLocal, color: {...settingsLocal.color, from: e.target.value}})} value={settingsLocal.color.from} type="color" style={{width: '20px', height: '20px', background: settingsLocal.color.from, marginRight: "5px", border: "0px transparent", outline: "none", cursor: "pointer"}}></input>} placeholder="0% Color" style={{width: "45%"}}/>
 
         </div>
 
