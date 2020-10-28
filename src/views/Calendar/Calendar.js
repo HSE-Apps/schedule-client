@@ -28,7 +28,7 @@ const CalendarSchedule = () => {
 
     return (
         <>
-            <div style={{width: "100%", display: "flex", justifyContent: 'center', alignItems: 'center', height: "calc(100vh - 100px)"}}>
+            <div style={{width: "100%", display: "flex", marginTop: "50px", justifyContent: 'center', alignItems: 'center', height: "calc(100vh - 100px)"}}>
                     <Calendar 
                     className="calendar"
                     mode="month"                     
