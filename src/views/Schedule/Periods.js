@@ -27,7 +27,7 @@ const bigContainerVariants = {
     visible:{
         opacity: 1,
         transition: {
-            staggerChildren: "0.20"
+            staggerChildren: "0.10"
         }
     }
 }
