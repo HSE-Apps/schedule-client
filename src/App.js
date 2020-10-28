@@ -6,7 +6,6 @@ import {Route, BrowserRouter as Router,} from 'react-router-dom'
 import Schedule from './views/Schedule/Schedule'
 
 import SettingsContext from './contexts/SettingsContext'
-import CalendarSchedule from './views/Calendar/Calendar'
 
 function App() {
 

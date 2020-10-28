@@ -37,7 +37,7 @@ const CalendarSchedule = () => {
                         <Title level={mobile ? 3 : 2} style={{color: "#333", fontWeight: "400"}}>{value.format('MMMM')} {value.format('Y')}</Title>
 
                         <div style={{display: 'flex', justifyContent: 'space-between', width: '50px'}}>
-                            <LeftOutlined onClick={() => {
+                            {/* <LeftOutlined onClick={() => {
                                 let temp = value.clone()
 
                                 if(month == 0){
@@ -72,7 +72,7 @@ const CalendarSchedule = () => {
                                 
                                   onChange(temp)
                                 }} style={{fontSize: "20px"}}
-                            />
+                            /> */}
                         </div> 
                             
                         

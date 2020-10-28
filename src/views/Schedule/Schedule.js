@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useRef, useState} from 'react'
 
-import { CalendarOutlined, ClockCircleOutlined, UnorderedListOutlined} from '@ant-design/icons';
+import { CalendarOutlined, ClockCircleOutlined, UnorderedListOutlined, PlayCircleOutlined} from '@ant-design/icons';
 
 import {Typography} from 'antd'
 
@@ -13,11 +13,13 @@ import Navbar from '../Shared/Navbar'
 
 import dayjs from 'dayjs'
 
-import CalendarSchedule from '../Calendar/Calendar'
+import CalendarSchedule from './Calendar'
 
 import useMedia from '../../hooks/useMedia'
 
 import SettingsContext from '../../contexts/SettingsContext'
+
+import News from './News'
 
 import {motion, useAnimation} from 'framer-motion'
 
@@ -290,6 +292,12 @@ const Schedule = () => {
             </>
             }
 
+            {view == "news" && 
+            <>
+                <News/>
+            </>
+            }
+
             {view == 'list' && 
             <>
                 <Periods periods={schedule}/>
@@ -304,6 +312,9 @@ const Schedule = () => {
                             </div>
                             <div onClick={() => setView("clock")} style={{width: "80px", height: "45px", display: 'flex', justifyContent: 'center', alignItems: "center", background: view == "clock" ? "white" : "transparent", boxShadow: view == "clock" ? " 2px 2px 10px rgb(0,118,220,0.32) " : "none", cursor: 'pointer'}}>
                                 <Text style={{paddingTop: '5px', color: "#333"}}><ClockCircleOutlined style={{fontSize: "20px"}} /></Text>
+                            </div>
+                            <div onClick={() => setView("news")} style={{width: "80px", height: "45px", display: 'flex', justifyContent: 'center', alignItems: "center", background: view == "news" ? "white" : "transparent", boxShadow: view == "news" ? " 2px 2px 10px rgb(0,118,220,0.32) " : "none", cursor: 'pointer'}}>
+                                <Text style={{paddingTop: '5px', color: "#333"}}><PlayCircleOutlined style={{fontSize: "20px"}} /></Text>
                             </div>
                             <div onClick={() => setView("calendar")} style={{width: "80px", height: "45px", display: 'flex', borderRadius: "0px 10px 10px 0px",justifyContent: 'center', alignItems: "center", background: view == "calendar" ? "white" : "transparent", boxShadow: view == "calendar" ? " 2px 2px 10px rgb(0,118,220,0.32) " : "none", cursor: 'pointer'}}>
                                 <Text style={{paddingTop: '3px', color: "#333"}}><CalendarOutlined style={{fontSize: "20px"}} /></Text>
