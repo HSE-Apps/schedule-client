@@ -27,6 +27,7 @@ import Morning from '../../img/Landscapes/Morning.png'
 import Daytime from '../../img/Landscapes/Daytime.png'
 import Sundown from '../../img/Landscapes/Sundown.png'
 import Night from '../../img/Landscapes/Night.png'
+import {wedSchedule, monThurSchedule, tuesFridSchedule} from './tempData'
 
 const {Text} = Typography
 
@@ -35,71 +36,15 @@ var customParseFormat = require('dayjs/plugin/customParseFormat')
 dayjs.extend(customParseFormat)
 
 
-const mockData = [
 
 
-    {
-        periodName: "Period 5",
-        startTime: "7:30 AM",
-        endTime: "8:55 AM",
-    }, {
-        periodName: "Passing Period",
-        startTime: "8:55 AM",
-        endTime: "9:02 AM",
-        isPassing: true
-    },
-    {
-        periodName: "Smart",
-        startTime: "9:02 AM",
-        endTime: "9:35 AM",
-    }, {
-        periodName: "Passing Period",
-        startTime: "9:35 AM",
-        endTime: "9:42 AM",
-        isPassing: true
-    }, {
-        periodName: "Period 6",
-        startTime: "9:42 AM",
-        endTime: "11:07 AM",
-    },
-    {
-        periodName: "Passing Period",
-        startTime: "11:07 AM",
-        endTime: "11:14 AM",
-        isPassing: true
-    },
-    {
-        periodName: "Period 7",
-        startTime: "11:14 AM",
-        endTime: "1:09 PM",
-        lunchPeriods: {
-            A: {
-                startTime: "11:14 AM",
-                endTime: "11:37 AM"
-            },
-            B: {
-                startTime: "11:53 AM",
-                endTime: "12:23 PM"
-            },
-            C: {
-                startTime: "12:39 PM",
-                endTime: "1:09 PM"
-            },
-        }
-    }, {
-        periodName: "Passing Period",
-        startTime: "1:09 PM",
-        endTime: "1:16 PM",
-        isPassing: true
-    }, 
-    {
-        periodName: "Clubs",
-        startTime: "1:16 PM",
-        endTime: "2:00 PM",
-    }
 
-    
-]
+
+let scheduleData = {
+    noSchool: ["19", "20","21","22","23"],
+    redWednesday: ["7", "28"],
+    blueWednesday: ["14"]
+}
 
 
 const periodV = {
@@ -194,7 +139,23 @@ const Schedule = () => {
 
     const fetchSchedule = async () => {
 
-        let fetchedSchedule = await mockData
+        let fetchedSchedule = null
+
+        let today = dayjs()
+
+        let dayOfWeek = today.format('dddd')
+        let dayOfMonth = today.format('D')
+
+        if(["Sunday", "Saturday"].includes(dayOfWeek) || scheduleData.noSchool.includes(dayOfMonth)){
+            // no school handles
+        } else if(["Monday", "Thursday"].includes(dayOfWeek)){
+            fetchedSchedule = monThurSchedule
+        } else if(["Tuesday", "Friday"].includes(dayOfWeek)){
+            fetchedSchedule = tuesFridSchedule
+        } else {
+            fetchedSchedule = wedSchedule
+        }
+
 
         let scheduleWithUnix = []
 
@@ -325,7 +286,7 @@ const Schedule = () => {
 
             {view == 'list' && 
             <>
-                <Periods periods={mockData}/>
+                <Periods periods={schedule}/>
             </>
             }
         </div>
