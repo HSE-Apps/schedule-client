@@ -99,7 +99,7 @@ export let monThurSchedule = [
             },
             B: {
                 startTime: "11:13 AM",
-                endTime: "11:43 PM"
+                endTime: "11:43 AM"
             },
             C: {
                 startTime: "11:59 AM",
