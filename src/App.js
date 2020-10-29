@@ -59,6 +59,9 @@ function App() {
         }
         visible={tempModal}
 
+        onCancel={() => {
+          setTempModal(false)
+        }}
 
         okText="Ok"
         footer={
