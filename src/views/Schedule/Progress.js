@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 
-import {Progress, Typography} from 'antd'
+import {Progress, Typography, Badge} from 'antd'
 
 import dayjs from 'dayjs'
 
@@ -18,7 +18,7 @@ dayjs.extend(duration)
 dayjs.extend(customParseFormat)
 
 
-const {Text} = Typography
+const {Text, Title} = Typography
 
 const ProgressSchedule = ({currentTime, period,nextPeriod}) => {
 
@@ -135,35 +135,77 @@ const ProgressSchedule = ({currentTime, period,nextPeriod}) => {
 
 
     return(
-        <>
+        <div style={{position: 'relative'}}>  
             <Progress
                 width={mobile ? window.innerWidth * .7 : 500}
                 type="circle"
                 format={() => 
                 <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                    {genText() || 'loading'}
-                {period.isPassing ? 
-
-                nextPeriod?.lunchPeriods && settings.lunch == "A" ?
-                <Text type="secondary" style={{fontSize: "1.1rem", marginTop: "10px", wordSpacing: "3px"}}>To Get to A Lunch</Text>
-
-                :
-                <Text type="secondary" style={{fontSize: "1.1rem", marginTop: "10px", wordSpacing: "3px"}}>Until {nextPeriod.periodName} Begins</Text>
-
-                :
+                    {settings.display == "Timer" ?  
+                    
+                    genText() || 'loading' 
+                    
+                    : 
+                    
                     <>
-                    {period.lunchPeriods ?
-                        {
-                            'DURING':  <Text type="secondary" style={{fontSize: "1.1rem", marginTop: "10px", wordSpacing: "3px"}}> Until {settings.lunch} Lunch Ends </Text>,
-                            'BEFORE':  <Text type="secondary" style={{fontSize: "1.1rem", marginTop: "10px", wordSpacing: "3px"}}>Until {settings.lunch} Lunch Begins</Text>,
-                            'AFTER':  <Text type="secondary" style={{fontSize: "1.1rem", marginTop: "10px", wordSpacing: "3px"}}>{nextPeriod ? `Until ${period.periodName} Ends` : "Until School Ends"}</Text>,
-                        }[lunchStatus()]
+                          {period.lunchPeriods ?
+                                  <>
+                                    {lunchStatus() == "DURING" ? 
+                                        settings.lunch + ' Lunch'
+                                    :
+                                        period.periodName
+                                    }
+                                  </>
+                                :
+                                period.periodName
+
+                            }
+                    </>
+                    
+                    }
+                    {settings.display == "Timer" ? 
+                        <>
+                            {period.isPassing ? 
+
+                            nextPeriod?.lunchPeriods && settings.lunch == "A" ?
+                            <Text type="secondary" style={{fontSize: mobile ? "1.1rem" : "1.4rem", marginTop: "10px", wordSpacing: "3px"}}>To Get to A Lunch</Text>
+
+                            :
+                            <Text type="secondary" style={{fontSize: mobile ? "1.1rem" : "1.4rem", marginTop: "10px", wordSpacing: "3px"}}>Until {nextPeriod.periodName} Begins</Text>
+
+                            :
+                                <>
+                                {period.lunchPeriods ?
+                                    {
+                                        'DURING':  <Text type="secondary" style={{fontSize: mobile ? "1.1rem" : "1.4rem", marginTop: "10px", wordSpacing: "3px"}}> Until {settings.lunch} Lunch Ends </Text>,
+                                        'BEFORE':  <Text type="secondary" style={{fontSize: mobile ? "1.1rem" : "1.4rem", marginTop: "10px", wordSpacing: "3px"}}>Until {settings.lunch} Lunch Begins</Text>,
+                                        'AFTER':  <Text type="secondary" style={{fontSize: mobile ? "1.1rem" : "1.4rem", marginTop: "10px", wordSpacing: "3px"}}>{nextPeriod ? `Until ${period.periodName} Ends` : "Until School Ends"}</Text>,
+                                    }[lunchStatus()]
+                                :
+                                <Text type="secondary" style={{fontSize: mobile ? "1.1rem" : "1.4rem", marginTop: "10px", wordSpacing: "3px"}}>{nextPeriod ? `Until ${period.periodName} Ends` : "Until School Ends"}</Text>
+
+                                }
+                                </>
+                            }
+                        </>
                     :
-                    <Text type="secondary" style={{fontSize: "1.1rem", marginTop: "10px", wordSpacing: "3px"}}>{nextPeriod ? `Until ${period.periodName} Ends` : "Until School Ends"}</Text>
+                    
+                        
+                        <Text type="secondary" style={{fontSize: mobile ? "1.3rem" : "1.5rem", marginTop: "10px", wordSpacing: "3px"}}>
+                            {genText()} {period.lunchPeriods ? 
+                                {
+                                    'DURING':   <>Until Lunch Ends </> ,
+                                    'BEFORE':  <>Until {settings.lunch} Lunch </>,
+                                    'AFTER':  <>{nextPeriod ? `Until Period Ends` : "Until School Ends"}</>
+                                }[lunchStatus()]
+                                :
+                                'Until Period Ends'
+                            }
+                        </Text>
 
                     }
-                    </>
-                }
+
+                
 
                 </div>
                 }
@@ -174,7 +216,7 @@ const ProgressSchedule = ({currentTime, period,nextPeriod}) => {
                 }}
                 percent={genPercent() || 0}
             />
-        </>
+        </div>
 
     )
 }

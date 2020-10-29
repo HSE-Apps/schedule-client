@@ -1,7 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {Link} from 'react-router-dom'
 
-import { Row, Col, Typography, Button, Dropdown, Drawer,Menu, Avatar, Modal, Input, Radio} from 'antd';
+import { Row, Col, Typography, Button, Checkbox, Drawer,Menu, Avatar, Modal, Input, Radio} from 'antd';
 
 import { GithubOutlined, InstagramOutlined, LogoutOutlined, MenuOutlined, SettingOutlined, LinkOutlined} from '@ant-design/icons';
 
@@ -113,15 +113,27 @@ const Navbar = ({history}) => {
 
         </div>
 
-        <Text strong style={{fontSize: "10px"}}>LUNCH </Text>
-        <div style={{marginTop: "3px"}}>
+        <Text strong style={{fontSize: "10px",}}>LUNCH </Text>
+        <div style={{marginTop: "3px",  marginBottom: "20px"}}>
           <Radio.Group value={settingsLocal.lunch} onChange={(e) => setSettingsLocal({...settingsLocal, lunch: e.target.value})}>
             <Radio.Button value={'A'}>A Lunch</Radio.Button >
             <Radio.Button value={'B'}>B Bunch</Radio.Button >
             <Radio.Button value={'C'}>C Lunch</Radio.Button >
+            {/* <Radio.Button value={'ALL'}>All</Radio.Button >
+            <Radio.Button disabled={true} value={'ALL'}>None</Radio.Button > */}
 
           </Radio.Group>
         </div>
+
+        <Text strong style={{fontSize: "10px"}}> MAIN DISPLAY </Text>
+        <div style={{marginTop: "3px"}}>
+        <Radio.Group value={settingsLocal.display} onChange={(e) => setSettingsLocal({...settingsLocal, display: e.target.value})}>
+            <Radio.Button value={'Timer'}>Timer</Radio.Button >
+            <Radio.Button value={'Period'}>Period</Radio.Button >
+
+          </Radio.Group>
+        </div>
+
 
         <div style={{width: '100%', textAlign:'center', marginTop: "30px"}}>
                     <Text style={{fontSize: '12px'}}>Made by HSE Apps</Text>
