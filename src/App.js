@@ -69,7 +69,7 @@ function App() {
         
         Do you happen to be in a club, and want a chance at winning <Text strong>$100?</Text> <br/> <br/>
         
-        If the club you're a part of isn't currently on our the club site (<a target="_blank" href='https://hseclubs.com'>hseclubs.com</a>) (please view on desktop as of now), and you can get your sponsor to put it there and ask for members of your club to join on the site, we will enter you in our giveaway. To enter, you must message our instagram <a target="_blank" href='https://instagram.com/hseapps'>@hseapps</a> with an email you sent to your sponsor and the name of your club. The winner will be announced November 6th, so act fast! 
+        If the club you're a part of isn't currently on our the club site (<a target="_blank" href='https://hseclubs.com'>hseclubs.com</a>), please view on desktop as of now), and you can get your sponsor to put it there and ask for members of your club to join on the site, we will enter you in our giveaway. To enter, you must message our instagram <a target="_blank" href='https://instagram.com/hseapps'>@hseapps</a> with an email you sent to your sponsor and the name of your club. The winner will be announced November 6th, so act fast! 
       </Text>
     </Modal>
     </>
