@@ -57,7 +57,7 @@ const Periods = ({periods}) => {
                 if(period.periodName != "Passing Period"){
                     return( 
                     <>
-                        <motion.div onClick={() => setShowLunch(!showLunch)} whileHover={{x: 10}} variants={periodV} style={{boxShadow: " 2px 2px 15px rgb(0,118,220,0.18) ", width: "80%",maxWidth: "500px", height: mobile ? '60px' : '80px',borderRadius: "10px", cursor: period.lunchPeriods ? 'pointer' : '', display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: vh * .02, padding: "24px"}}>
+                        <motion.div onClick={() => setShowLunch(!showLunch)} whileHover={{x: 10}} variants={periodV} style={{flexShrink: 0, boxShadow: " 2px 2px 15px rgb(0,118,220,0.18) ", width: "80%",maxWidth: "500px", height: mobile ? '60px' : '80px',borderRadius: "10px", cursor: period.lunchPeriods ? 'pointer' : '', display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: vh * .02, padding: "24px"}}>
                                 <div>
                                     <Title level={mobile ? 4 : 3} style={{color: "#333", marginBottom: '0px'}}>{period.periodName}</Title>
                                 </div>
@@ -68,9 +68,9 @@ const Periods = ({periods}) => {
                                     }
                                 </div>
                         </motion.div>
-                        <div style={{display: 'flex', alignItems: 'flex-end', justifyContent: mobile ? 'flex-end' : 'space-between', flexDirection: mobile ? 'column' : 'row', width: "80%",maxWidth: "500px"}}>
-                            {period.lunchPeriods && showLunch && 
-                                <>
+                        {period.lunchPeriods && showLunch && 
+                        <div id="hi" style={{flexShrink: 0,display: 'flex', alignItems: 'flex-end', justifyContent: mobile ? 'flex-end' : 'space-between', flexDirection: mobile ? 'column' : 'row', width: "80%",maxWidth: "500px"}}>
+
                                     {Object.keys(period.lunchPeriods).map(lunch => {
                                         return(
                                             <motion.div whileHover={{x: 3}} variants={periodV} style={{boxShadow: " 2px 2px 15px rgb(0,118,220,0.18) ", width: mobile ? "85%" : '30%',maxWidth: "500px",  height: mobile ? '60px' : '80px', borderRadius: "10px", cursor: 'pointer', display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: vh * .02, padding: "24px"}}>
@@ -86,9 +86,9 @@ const Periods = ({periods}) => {
                                             </motion.div>
                                         )
                                     })}
-                                </>
-                            }
+                            
                         </div>
+                        }
                        
                     </>
                 )} else {
