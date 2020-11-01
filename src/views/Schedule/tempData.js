@@ -214,3 +214,8 @@ export let specialSchedule = [
 
     
 ]
+
+export let weekendSchedule = [
+
+    
+]
