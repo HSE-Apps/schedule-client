@@ -75,12 +75,21 @@ const Periods = ({periods}) => {
                                         return(
                                             <motion.div whileHover={{x: 3}} variants={periodV} style={{boxShadow: " 2px 2px 15px rgb(0,118,220,0.18) ", width: mobile ? "85%" : '30%',maxWidth: "500px",  height: mobile ? '60px' : '80px', borderRadius: "10px", cursor: 'pointer', display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: vh * .02, padding: "24px"}}>
                                                 <div>
-                                                    <Title level={mobile ? 4 : 3} style={{color: "#333", marginBottom: '0px'}}>{lunch}</Title>
+                                                    <Title level={mobile ? 4 : 3} style={{color: "#333", marginBottom: '0px'}}>{lunch}{mobile && " Lunch"}</Title>
                                                 </div>
                                                 <div>
-                                                    <Text style={{color: "#555", fontSize: mobile ? '10px' : '12px'}}>{period.lunchPeriods[lunch].startTime}</Text>
-                                                    <br/>
-                                                    <Text style={{color: "#555", fontSize: mobile ? '10px' : '12px'}}>{period.lunchPeriods[lunch].endTime}</Text>
+                                                    {mobile ? 
+                                                    
+                                                    <Text  style={{color: "#555", fontSize: mobile ? '12px' : '14px'}}>{period.lunchPeriods[lunch].startTime} - {period.lunchPeriods[lunch].endTime}</Text>
+
+                                                    :
+                                                    <>
+                                                        <Text style={{color: "#555", fontSize: mobile ? '10px' : '12px'}}>{period.lunchPeriods[lunch].startTime}</Text>
+                                                        <br/>
+                                                        <Text style={{color: "#555", fontSize: mobile ? '10px' : '12px'}}>{period.lunchPeriods[lunch].endTime}</Text>
+                                                    </>
+                                                    }
+                                                 
 
                                                 </div>
                                             </motion.div>
