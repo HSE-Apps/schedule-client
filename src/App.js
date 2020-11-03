@@ -13,7 +13,7 @@ const {Text} = Typography
 
 function App() {
 
-  const [settings,setSettings] = useState({lunch: 'A', display: 'timer', color: {to: "#1890FF", from: "#eb2f96"}})
+  const [settings,setSettings] = useState({lunch: 'A', display: 'Timer', color: {to: "#1890FF", from: "#eb2f96"}})
 
   const mobile = useMedia(['(min-width: 750px)', '(max-width: 750px)'], [false, true])
 
