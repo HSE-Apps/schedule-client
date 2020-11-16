@@ -105,7 +105,7 @@ export let monThurSchedule = [
     }, {
         periodName: "Passing Period",
         startTime: "12:30 PM",
-        endTime: "12:40 AM",
+        endTime: "12:40 PM",
         isPassing: true
     }, 
     {
