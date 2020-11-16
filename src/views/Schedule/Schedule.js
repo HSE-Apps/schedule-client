@@ -81,7 +81,7 @@ const Schedule = () => {
     const [schedule, setSchedule] = useState(null)
     const [period, setPeriod] = useState(null)
     const [nextPeriod, setNextPeriod] = useState(null)
-    const [currentTime, setCurrentTime] = useState(dayjs().valueOf())
+    const [currentTime, setCurrentTime] = useState(dayjs('9:49 AM', 'h mm A').valueOf())
     const [status, setStatus] = useState('LOADING')
 
 
@@ -94,7 +94,7 @@ const Schedule = () => {
 
     const getPeriod = () => {
 
-        let currentTime = dayjs().valueOf()
+        let currentTime = dayjs('9:49 AM', 'h mm A').valueOf()
 
         if(schedule.length == 0){
             if(currentTime > dayjs('8:00 PM', 'h mm A').valueOf()){
@@ -225,16 +225,16 @@ const Schedule = () => {
         if(!schedule){
             fetchSchedule()
         } else {
-            timer()
+            // timer()
         }
     }, [schedule])
 
     const timer = () => {
-        console.log("wow")
+        // console.log("wow")
 
-        setCurrentTime(dayjs().valueOf())
-        getPeriod()
-        setTimeout(() => timer(), 250)
+        // setCurrentTime(currentTime + 250)
+        // getPeriod()
+        // setTimeout(() => timer(), 250)
     }
 
     return(

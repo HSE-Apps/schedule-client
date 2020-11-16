@@ -53,7 +53,7 @@ dayjs.extend(duration)
 dayjs.extend(customParseFormat)
 
 
-const Periods = () => {
+const NewsCast = () => {
 
     const [newsCasts, setNewsCasts] = useState(null)
 
@@ -84,9 +84,8 @@ const Periods = () => {
             {newsCasts ? 
         <motion.div variants={bigContainerVariants} initial="hidden" animate="visible" style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: "100%", maxHeight: vh * .85, overflowY: "scroll", overflowX: 'hidden', padding: '20px 0px', margin: '45px 0px'}}>
         {newsCasts.slice(0,10).map((cast) => {
-
+            
                 const date = dayjs(cast.date)
-
                 return(
                         <a target="_blank" style={{width: "80%",maxWidth: "500px", display: 'block'}} href={cast.link}>
                         <motion.div whileHover={{x: 10}} variants={periodV} style={{boxShadow: " 2px 2px 15px rgb(0,118,220,0.18) ", width: "100%", height: mobile ? '60px' : '80px', borderRadius: "10px", cursor: 'pointer', display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: vh * .02, padding: "24px"}}>
@@ -100,8 +99,6 @@ const Periods = () => {
                             </div>
                         </motion.div>
                         </a>
-
-
                 )
             })}
             </motion.div>
@@ -109,10 +106,7 @@ const Periods = () => {
             <LoadingOutlined style={{fontSize: "55px", color: "#1890ff"}} />   
             }
         </>
-        
-        
-       
     )
 }
 
-export default Periods                    
+export default NewsCast                    
