@@ -54,7 +54,7 @@ export let tuesFridSchedule = [
         isPassing: true
     }, 
     {
-        periodName: "Clubs",
+        periodName: "Tiered Interventions",
         startTime: "1:20 PM",
         endTime: "2:00 PM",
     }
