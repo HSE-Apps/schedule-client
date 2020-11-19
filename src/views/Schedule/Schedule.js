@@ -43,7 +43,7 @@ dayjs.extend(customParseFormat)
 
 
 let scheduleData = {
-    noSchool: ["19", "20","21","22","23"],
+    noSchool: ["21","22"],
     redWednesday: ["7", "28"],
     blueWednesday: ["14"]
 }
