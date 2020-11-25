@@ -40,15 +40,11 @@ dayjs.extend(customParseFormat)
 
 
 
-
-
 let scheduleData = {
-    noSchool: ["19", "20","21","22","23"],
-    redWednesday: ["7", "28"],
-    blueWednesday: ["14"]
+    noSchool: ["25","26","27"],
+    redWednesday: ["11"],
+    blueWednesday: ["4", "18"]
 }
-
-
 const periodV = {
     hidden:{
        opacity: 0
