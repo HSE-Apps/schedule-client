@@ -12,7 +12,7 @@ import useMedia from '../../hooks/useMedia'
 const {Text, Title} = Typography
 
 let mockData = {
-    noSchool: ["25","26","27"],
+    noSchool: ["21","21","22","23","24","25","28","29","30","31"],
     redWednesday: ["11"],
     blueWednesday: ["4", "18"]
 }
@@ -22,7 +22,7 @@ const CalendarSchedule = () => {
     const mobile = useMedia(['(min-width: 750px)', '(max-width: 750px)'], [false, true])
 
 
-    const [month, setMonth] = useState(10)
+    const [month, setMonth] = useState(11)
     const [year, setYear] = useState(2020)
 
 
@@ -94,6 +94,22 @@ const CalendarSchedule = () => {
 
                         if(parseInt(monthOfDate) - 1 != month){
                             return <></>
+                        } else if(mockData.noSchool.includes(dayOfMonth) || (dayOfWeek == "Sunday" || dayOfWeek == "Saturday")) {
+                            return(
+                                <>
+                                <div className="calendar-box" style={{width: "100%", height: mobile ? "40px" : "100px", background: "#fafafa"}}>
+                                    <Divider style={{marginBottom: "5px", marginTop: "10px", background: "#f0f0f0"}}/>
+                                    <Text style={{paddingRight: "12px"}}>{dayOfMonth}</Text>
+                                </div>
+                            </>
+                            )
+                        } else {
+                            return(
+                                <div className="calendar-box" style={{width: "100%",height: mobile ? "40px" : "100px", color: "#69c0ff", background: "#f2fbff"}}>
+                                <Divider style={{marginBottom: "5px", marginTop: "10px", background: "#69c0ff", opacity: "0.15"}}/>
+                                <Text style={{paddingRight: "12px", color: "#69c0ff"}}>{dayOfMonth}</Text>
+                            </div>
+                            )
                         }
 
                         if(mockData.noSchool.includes(dayOfMonth) || (dayOfWeek == "Sunday" || dayOfWeek == "Saturday")){
