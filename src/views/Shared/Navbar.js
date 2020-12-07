@@ -117,7 +117,7 @@ const Navbar = ({history}) => {
         <div style={{marginTop: "3px",  marginBottom: "20px"}}>
           <Radio.Group value={settingsLocal.lunch} onChange={(e) => setSettingsLocal({...settingsLocal, lunch: e.target.value})}>
             <Radio.Button value={'A'}>A Lunch</Radio.Button >
-            <Radio.Button value={'B'}>B Bunch</Radio.Button >
+            <Radio.Button value={'B'}>B Lunch</Radio.Button >
             <Radio.Button value={'C'}>C Lunch</Radio.Button >
             {/* <Radio.Button value={'ALL'}>All</Radio.Button >
             <Radio.Button disabled={true} value={'ALL'}>None</Radio.Button > */}
