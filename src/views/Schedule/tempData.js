@@ -204,7 +204,56 @@ export let wedSchedule = [
 
 export let specialSchedule = [
 
-    
+
+    {
+        periodName: "Period 1",
+        startTime: "7:30 AM",
+        endTime: "8:50 AM",
+    }, {
+        periodName: "Passing Period",
+        startTime: "8:50 AM",
+        endTime: "9:00 AM",
+        isPassing: true
+    },
+    {
+        periodName: "Period 2",
+        startTime: "9:00 AM",
+        endTime: "10:20 AM",
+    },
+    {
+        periodName: "Passing Period",
+        startTime: "10:20 AM",
+        endTime: "10:30 AM",
+        isPassing: true
+    },
+    {
+        periodName: "Period 3",
+        startTime: "10:30 AM",
+        endTime: "11:50 AM",
+      
+    }, {
+        periodName: "Passing Period",
+        startTime: "11:50 AM",
+        endTime: "11:50 AM",
+        isPassing: true
+    }, 
+    {
+        periodName: "Lunch Break",
+        startTime: "11:50 AM",
+        endTime: "12:30 PM",
+      
+    }, {
+        periodName: "Passing Period",
+        startTime: "12:30 PM",
+        endTime: "12:40 PM",
+        isPassing: true
+    }, 
+    {
+        periodName: "Period 4",
+        startTime: "12:40 PM",
+        endTime: "2:00 PM",
+    }
+
 ]
 
 export let weekendSchedule = [

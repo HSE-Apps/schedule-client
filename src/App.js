@@ -18,7 +18,9 @@ function App() {
   const mobile = useMedia(['(min-width: 750px)', '(max-width: 750px)'], [false, true])
 
 
-  const [tempModal, setTempModal] = useState(localStorage.getItem('temp-modal')) 
+  const [tempModal, setTempModal] = useState(!localStorage.getItem('temp-modal')) 
+
+
   
   useEffect(() => {
     localStorage.setItem('temp-modal', 'seen')
@@ -50,7 +52,7 @@ function App() {
         <Route exact path="/" component={Schedule}/>
       </Router>
     </SettingsContext.Provider>
-    {/* <Modal
+    <Modal
         style={{
           width: mobile ? "200px" : "400px",
         }}
@@ -69,12 +71,14 @@ function App() {
         }
     >
       <Text> 
-        
-        Do you happen to be in a club, and want a chance at winning <Text strong>$100?</Text> <br/> <br/>
-        
-        If the club you're a part of isn't currently on our the club site (<a target="_blank" href='https://hseclubs.com'>hseclubs.com</a>, please view on desktop as of now), and you can get your sponsor to put it there and ask for members of your club to join on the site, we will enter you in our giveaway. To enter, you must message our instagram <a target="_blank" href='https://instagram.com/hseapps'>@hseapps</a> with an email you sent to your sponsor and the name of your club. The winner will be announced November 6th, so act fast! 
+          Welcome back everyone! We at HSE Apps hope you enjoyed your short time off, and wish you the best in this spring semester.
       </Text>
-    </Modal> */}
+      <br/>
+      <br/>
+      <Text strong> 
+          Just a reminder, you can change display settings of the countdown along with your lunch by pressing the top right settings button.
+      </Text>
+    </Modal>
     </>
   );
 }

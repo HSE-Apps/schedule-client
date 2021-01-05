@@ -12,7 +12,7 @@ import useMedia from '../../hooks/useMedia'
 const {Text, Title} = Typography
 
 let mockData = {
-    noSchool: ["21","21","22","23","24","25","28","29","30","31"],
+    noSchool: ["18"],
     redWednesday: ["11"],
     blueWednesday: ["4", "18"]
 }
@@ -22,8 +22,8 @@ const CalendarSchedule = () => {
     const mobile = useMedia(['(min-width: 750px)', '(max-width: 750px)'], [false, true])
 
 
-    const [month, setMonth] = useState(11)
-    const [year, setYear] = useState(2020)
+    const [month, setMonth] = useState(0)
+    const [year, setYear] = useState(2021)
 
 
     return (
