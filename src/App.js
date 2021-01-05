@@ -18,12 +18,12 @@ function App() {
   const mobile = useMedia(['(min-width: 750px)', '(max-width: 750px)'], [false, true])
 
 
-  const [tempModal, setTempModal] = useState(!localStorage.getItem('temp-modal')) 
+  const [tempModal, setTempModal] = useState(!localStorage.getItem('temp-modal-h')) 
 
 
   
   useEffect(() => {
-    localStorage.setItem('temp-modal', 'seen')
+    localStorage.setItem('temp-modal-h', 'seen')
     loadSettings()
   }, [])
 
