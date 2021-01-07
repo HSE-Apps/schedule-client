@@ -204,8 +204,9 @@ export let wedSchedule = [
 
 export let specialSchedule = [
 
+    
     {
-        periodName: "Period 5",
+        periodName: "Period 1",
         startTime: "7:30 AM",
         endTime: "8:50 AM",
     }, {
@@ -215,52 +216,45 @@ export let specialSchedule = [
         isPassing: true
     },
     {
-        periodName: "Smart",
+        periodName: "Period 2",
         startTime: "9:00 AM",
-        endTime: "9:35 AM",
-    }, {
-        periodName: "Passing Period",
-        startTime: "9:35 AM",
-        endTime: "9:45 AM",
-        isPassing: true
-    }, {
-        periodName: "Period 6",
-        startTime: "9:45 AM",
-        endTime: "11:05 AM",
+        endTime: "10:20 AM",
     },
     {
         periodName: "Passing Period",
-        startTime: "11:05 AM",
-        endTime: "11:05 AM",
+        startTime: "10:20 AM",
+        endTime: "10:30 AM",
         isPassing: true
     },
+    {
+        periodName: "Period 3",
+        startTime: "10:30 AM",
+        endTime: "11:50 AM",
+      
+    }, {
+        periodName: "Passing Period",
+        startTime: "11:50 AM",
+        endTime: "11:50 AM",
+        isPassing: true
+    }, 
     {
         periodName: "Lunch Break",
-        startTime: "11:05 AM",
-        endTime: "11:45 AM",
-    },
-    , {
+        startTime: "11:50 AM",
+        endTime: "12:30 PM",
+      
+    }, {
         periodName: "Passing Period",
-        startTime: "11:45 AM",
-        endTime: "11:55 AM",
+        startTime: "12:30 PM",
+        endTime: "12:40 PM",
         isPassing: true
     }, 
     {
-        periodName: "Period 7",
-        startTime: "11:55 AM",
-        endTime: "1:15 PM",
-    },
-    , {
-        periodName: "Passing Period",
-        startTime: "1:15 PM",
-        endTime: "1:20 PM",
-        isPassing: true
-    }, 
-    {
-        periodName: "Tiered Interventions",
-        startTime: "1:20 PM",
+        periodName: "Period 4",
+        startTime: "12:40 PM",
         endTime: "2:00 PM",
     }
+
+    
 
 ]
 
