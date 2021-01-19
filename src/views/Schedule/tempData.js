@@ -265,7 +265,7 @@ export let specialSchedule = [
                 endTime: "12:20 PM"
             },
         }
-    }, {  {
+    },  {
         periodName: "Passing Period",
         startTime: "12:20 PM",
         endTime: "12:27 PM",
