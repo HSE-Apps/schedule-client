@@ -207,51 +207,83 @@ export let specialSchedule = [
     {
         periodName: "Period 1",
         startTime: "7:30 AM",
-        endTime: "8:50 AM",
+        endTime: "8:12 AM",
     }, {
         periodName: "Passing Period",
-        startTime: "8:50 AM",
-        endTime: "9:00 AM",
+        startTime: "8:12 AM",
+        endTime: "8:22 AM",
         isPassing: true
     },
     {
         periodName: "Period 2",
-        startTime: "9:00 AM",
-        endTime: "10:20 AM",
+        startTime: "8:22 AM",
+        endTime: "9:03 AM",
     },
     {
         periodName: "Passing Period",
-        startTime: "10:20 AM",
-        endTime: "10:30 AM",
+        startTime: "9:03 AM",
+        endTime: "9:13 AM",
         isPassing: true
     },
     {
         periodName: "Period 3",
-        startTime: "10:30 AM",
-        endTime: "11:50 AM",
-      
-    }, {
-        periodName: "Passing Period",
-        startTime: "11:50 AM",
-        endTime: "11:50 AM",
-        isPassing: true
-    }, 
+        startTime: "9:13 AM",
+        endTime: "9:54 AM",
+    },
     {
-        periodName: "Lunch Break",
-        startTime: "11:50 AM",
-        endTime: "12:30 PM",
-      
-    }, {
         periodName: "Passing Period",
-        startTime: "12:30 PM",
-        endTime: "12:40 PM",
+        startTime: "9:54 AM",
+        endTime: "10:04 AM",
         isPassing: true
-    }, 
+    },
     {
         periodName: "Period 4",
-        startTime: "12:40 PM",
+        startTime: "10:04 AM",
+        endTime: "10:45 AM",
+    },
+    {
+        periodName: "Passing Period",
+        startTime: "10:45 AM",
+        endTime: "10:55 AM",
+        isPassing: true
+    },
+    {
+        periodName: "Period 5",
+        startTime: "10:55 AM",
+        endTime: "11:36 AM",
+    },
+    {
+        periodName: "Passing Period",
+        startTime: "11:36 AM",
+        endTime: "11:36 AM",
+        isPassing: true
+    }, {
+        periodName: "Lunch Break",
+        startTime: "11:36 AM",
+        endTime: "12:16 PM",
+    },  {
+        periodName: "Passing Period",
+        startTime: "12:16 PM",
+        endTime: "12:26 PM",
+        isPassing: true
+    },
+
+    {
+        periodName: "Period 6",
+        startTime: "12:26 PM",
+        endTime: "1:08 PM",
+    },
+    {
+        periodName: "Passing Period",
+        startTime: "1:08 PM",
+        endTime: "1:18 PM",
+        isPassing: true
+    },
+    {
+        periodName: "Period 7",
+        startTime: "1:18 PM",
         endTime: "2:00 PM",
-    }
+    },
 
     
 
