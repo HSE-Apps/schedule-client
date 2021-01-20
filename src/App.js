@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {Route, BrowserRouter as Router,} from 'react-router-dom'
 
-import {Modal, Typography, Button} from 'antd'
+import {Modal, Typography, Button, notification} from 'antd'
 
 import useMedia from './hooks/useMedia'
 
@@ -77,6 +77,10 @@ function App() {
       <br/>
       <Text strong> 
           Just a reminder, you can change display settings of the countdown along with your lunch by pressing the top right settings button.
+      </Text>
+      <br/>
+      <Text type="secondary">
+        We apologize for the recent instability with the schedule app, and we are working hard to fix it!
       </Text>
     </Modal>
     </>
