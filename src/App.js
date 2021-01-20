@@ -76,7 +76,11 @@ function App() {
       <br/>
       <br/>
       <Text strong> 
-          Just a reminder, you can change display settings of the countdown along with your lunch by pressing the top right settings button.
+          Just a reminder, you can change display settings of the countdown along with your lunch by pressing the top right settings button. 
+      </Text>
+      <br/>
+      <Text type="secondary">
+        (We apologize for the recent instability in the schedule app, and we're working hard to keep it stable!)
       </Text>
     </Modal>
     </>
