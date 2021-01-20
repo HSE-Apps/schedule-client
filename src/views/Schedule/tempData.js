@@ -200,7 +200,7 @@ export let monThurSchedule = [
 //     },
 
 // ]
-export let wedSchedule = [
+export let specialSchedule = [
 
 
     {
@@ -256,99 +256,99 @@ export let wedSchedule = [
 ]
 
 
-export let specialSchedule = [
+// export let specialSchedule = [
 
-    {
-        periodName: "Period 1",
-        startTime: "7:30 AM",
-        endTime: "8:13 AM",
-    }, {
-        periodName: "Passing Period",
-        startTime: "8:13 AM",
-        endTime: "8:20 AM",
-        isPassing: true
-    },
-    {
-        periodName: "Period 2",
-        startTime: "8:20 AM",
-        endTime: "9:02 AM",
-    },
-    {
-        periodName: "Passing Period",
-        startTime: "9:02 AM",
-        endTime: "9:09 AM",
-        isPassing: true
-    },
-    {
-        periodName: "Period 3",
-        startTime: "9:09 AM",
-        endTime: "9:51 AM",
-    },
-    {
-        periodName: "Passing Period",
-        startTime: "9:51 AM",
-        endTime: "9:58 AM",
-        isPassing: true
-    },
-    {
-        periodName: "Period 4",
-        startTime: "9:58 AM",
-        endTime: "10:40 AM",
-    },
-    {
-        periodName: "Passing Period",
-        startTime: "10:40 AM",
-        endTime: "10:40 AM",
-        isPassing: true
-    },
-    {
-        periodName: "Period 5",
-        startTime: "10:40 AM",
-        endTime: "12:20 PM",
-        lunchPeriods: {
-            A: {
-                startTime: "10:40 AM",
-                endTime: "11:11 AM"
-            },
-            B: {
-                startTime: "11:15 AM",
-                endTime: "11:45 AM"
-            },
-            C: {
-                startTime: "11:50 AM",
-                endTime: "12:20 PM"
-            },
-        }
-    },  {
-        periodName: "Passing Period",
-        startTime: "12:20 PM",
-        endTime: "12:27 PM",
-        isPassing: true
-    },
+//     {
+//         periodName: "Period 1",
+//         startTime: "7:30 AM",
+//         endTime: "8:13 AM",
+//     }, {
+//         periodName: "Passing Period",
+//         startTime: "8:13 AM",
+//         endTime: "8:20 AM",
+//         isPassing: true
+//     },
+//     {
+//         periodName: "Period 2",
+//         startTime: "8:20 AM",
+//         endTime: "9:02 AM",
+//     },
+//     {
+//         periodName: "Passing Period",
+//         startTime: "9:02 AM",
+//         endTime: "9:09 AM",
+//         isPassing: true
+//     },
+//     {
+//         periodName: "Period 3",
+//         startTime: "9:09 AM",
+//         endTime: "9:51 AM",
+//     },
+//     {
+//         periodName: "Passing Period",
+//         startTime: "9:51 AM",
+//         endTime: "9:58 AM",
+//         isPassing: true
+//     },
+//     {
+//         periodName: "Period 4",
+//         startTime: "9:58 AM",
+//         endTime: "10:40 AM",
+//     },
+//     {
+//         periodName: "Passing Period",
+//         startTime: "10:40 AM",
+//         endTime: "10:40 AM",
+//         isPassing: true
+//     },
+//     {
+//         periodName: "Period 5",
+//         startTime: "10:40 AM",
+//         endTime: "12:20 PM",
+//         lunchPeriods: {
+//             A: {
+//                 startTime: "10:40 AM",
+//                 endTime: "11:11 AM"
+//             },
+//             B: {
+//                 startTime: "11:15 AM",
+//                 endTime: "11:45 AM"
+//             },
+//             C: {
+//                 startTime: "11:50 AM",
+//                 endTime: "12:20 PM"
+//             },
+//         }
+//     },  {
+//         periodName: "Passing Period",
+//         startTime: "12:20 PM",
+//         endTime: "12:27 PM",
+//         isPassing: true
+//     },
 
-    {
-        periodName: "Period 6",
-        startTime: "12:27 PM",
-        endTime: "1:09 PM",
-    },
-    {
-        periodName: "Passing Period",
-        startTime: "1:09 PM",
-        endTime: "1:16 PM",
-        isPassing: true
-    },
-    {
-        periodName: "Period 7",
-        startTime: "1:16 PM",
-        endTime: "2:00 PM",
-    },
-
-    
+//     {
+//         periodName: "Period 6",
+//         startTime: "12:27 PM",
+//         endTime: "1:09 PM",
+//     },
+//     {
+//         periodName: "Passing Period",
+//         startTime: "1:09 PM",
+//         endTime: "1:16 PM",
+//         isPassing: true
+//     },
+//     {
+//         periodName: "Period 7",
+//         startTime: "1:16 PM",
+//         endTime: "2:00 PM",
+//     },
 
     
+
+    
     
 
-]
+// ]
 
 export let weekendSchedule = [
 
