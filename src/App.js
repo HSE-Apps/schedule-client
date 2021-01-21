@@ -30,7 +30,7 @@ function App() {
   
     if (localStorage.getItem('feedback-notif-a') !== 'seen'){
       setTimeout(() => {openNotification('buttomRight');}, 5000);
-      localStorage.setItem('feedback-notif', 'seen')
+      localStorage.setItem('feedback-notif-a', 'seen')
 
     } 
 
