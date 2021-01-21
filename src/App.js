@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import {Route, BrowserRouter as Router,} from 'react-router-dom'
 
-import {Modal, Typography, Button, notification} from 'antd'
+import {Modal, Typography, Button, notification, Space, Divider} from 'antd'
+
 
 import useMedia from './hooks/useMedia'
 
@@ -21,9 +22,18 @@ function App() {
   const [tempModal, setTempModal] = useState(!localStorage.getItem('temp-modal-h')) 
 
 
+
   
   useEffect(() => {
     localStorage.setItem('temp-modal-h', 'seen')
+    
+  
+    if (localStorage.getItem('feedback-notif') !== 'seen'){
+      setTimeout(() => {openNotification('buttomRight');}, 5000);
+      localStorage.setItem('feedback-notif', 'seen')
+
+    } 
+
     loadSettings()
   }, [])
 
@@ -44,6 +54,20 @@ function App() {
     console.log('saved')
     localStorage.setItem('settings', JSON.stringify(settings))
   }
+
+  const link = (
+    <Text>Send any feedback/suggestions you have about the HSE Schedule App <a href="https://forms.gle/ppXB97gXhMb3AuAT9" target="_blank">here</a>! </Text>
+  )
+  const openNotification = placement => {
+    notification.info({
+      message: `Feedback Appreciated!`,
+      duration: 10,
+      description:
+        link,
+      placement,
+    });
+  };
+
 
   return (
     <>
@@ -80,9 +104,14 @@ function App() {
       </Text>
       <br/>
       <Text type="secondary">
-        We apologize for the recent instability with the schedule app, and we are working hard to fix it!
+        We apologize for the recent instability with the schedule app, and we are working hard to fix it! 
       </Text>
+
+
+
     </Modal>
+
+        
     </>
   );
 }
