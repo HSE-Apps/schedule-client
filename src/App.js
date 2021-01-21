@@ -19,13 +19,13 @@ function App() {
   const mobile = useMedia(['(min-width: 750px)', '(max-width: 750px)'], [false, true])
 
 
-  const [tempModal, setTempModal] = useState(!localStorage.getItem('temp-modal-h')) 
+  const [tempModal, setTempModal] = useState(!localStorage.getItem('temp-modal-a')) 
 
 
 
   
   useEffect(() => {
-    localStorage.setItem('temp-modal-h', 'seen')
+    localStorage.setItem('temp-modal-a', 'seen')
     
   
     if (localStorage.getItem('feedback-notif') !== 'seen'){
