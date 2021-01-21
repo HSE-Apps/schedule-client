@@ -91,66 +91,88 @@ const Schedule = () => {
     const getPeriod = () => {
 
         let currentTime = dayjs().valueOf()
+        let today = dayjs()
+        let day = today.format('dddd')
 
-        if(schedule.length == 0){
-            if(currentTime > dayjs('8:00 PM', 'h mm A').valueOf()){
-                setStatus('WEEKEND_NIGHT')
+        if (day == 'Friday'){
+            
+            
+             if(currentTime > dayjs('8:00 PM', 'h mm A').valueOf()){
+                setStatus('E_LEARNING_NIGHT')
             } else if (currentTime > dayjs('6:00 PM', 'h mm A').valueOf()){
-                setStatus('WEEKEND_SUNDOWN')
+                setStatus('E_LEARNING_SUNDOWN')
             } else if (currentTime > dayjs('12:00 PM', 'h mm A').valueOf()) {
-                setStatus('WEEKEND_DAYTIME')
+                setStatus('E_LEARNING_DAYTIME')
             } else if (currentTime >= dayjs('6:30 AM', 'h mm A').valueOf()){
-                setStatus('WEEKEND_MORNING')
+                setStatus('E_LEARNING_MORNING')
             } else {
-                setStatus('WEEKEND_NIGHT')
+                setStatus('E_LEARNING_NIGHT')
             }
-            return;
-        } else {
-            let beforeSchool = currentTime < schedule[0].startTimeUnix
-            let afterSchool = currentTime > schedule[schedule.length - 1].endTimeUnix
-    
-            if(beforeSchool){
-                if(currentTime >= dayjs('6:30 AM', 'h mm A').valueOf()){
-                    setStatus('BEFORE_SCHOOL_MORNING')
-                } else {
-                    setStatus('BEFORE_SCHOOL_NIGHT')
-                }
-            } else if (afterSchool) {
-                if(currentTime > dayjs('8:00 PM', 'h mm A').valueOf()){
-                    setStatus('AFTER_SCHOOL_NIGHT')
-                } else if (currentTime > dayjs('6:00 PM', 'h mm A').valueOf()){
-                    setStatus('AFTER_SCHOOL_SUNDOWN')
-    
-                } else {
-                    setStatus('AFTER_SCHOOL_DAYTIME')
-    
-                }
-            }
-    
-            schedule.forEach((period, index) => {
-                if(currentTime >= period.startTimeUnix && currentTime < period.endTimeUnix){
-                    setStatus('SCHOOL_NOW')
-                    setPeriod(period)
-                    
-                    try{
-                        if(period.isPassing){
-                            setNextPeriod(schedule[index+1])
-                        } else {
-                            setNextPeriod(schedule[index+2])
-    
-                        }
-    
-                    } catch {
-                        setNextPeriod(null)
-                    }
-    
-                }
-            })
-        }
+            return; 
 
+        } else {
+        
+            if(schedule.length == 0){
+                if(currentTime > dayjs('8:00 PM', 'h mm A').valueOf()){
+                    setStatus('WEEKEND_NIGHT')
+                } else if (currentTime > dayjs('6:00 PM', 'h mm A').valueOf()){
+                    setStatus('WEEKEND_SUNDOWN')
+                } else if (currentTime > dayjs('12:00 PM', 'h mm A').valueOf()) {
+                    setStatus('WEEKEND_DAYTIME')
+                } else if (currentTime >= dayjs('6:30 AM', 'h mm A').valueOf()){
+                    setStatus('WEEKEND_MORNING')
+                } else {
+                    setStatus('WEEKEND_NIGHT')
+                }
+                return;
+            } else {
+                let beforeSchool = currentTime < schedule[0].startTimeUnix
+                let afterSchool = currentTime > schedule[schedule.length - 1].endTimeUnix
+        
+                if(beforeSchool){
+                    if(currentTime >= dayjs('6:30 AM', 'h mm A').valueOf()){
+                        setStatus('BEFORE_SCHOOL_MORNING')
+                    } else {
+                        setStatus('BEFORE_SCHOOL_NIGHT')
+                    }
+                } else if (afterSchool) {
+                    if(currentTime > dayjs('8:00 PM', 'h mm A').valueOf()){
+                        setStatus('AFTER_SCHOOL_NIGHT')
+                    } else if (currentTime > dayjs('6:00 PM', 'h mm A').valueOf()){
+                        setStatus('AFTER_SCHOOL_SUNDOWN')
+        
+                    } else {
+                        setStatus('AFTER_SCHOOL_DAYTIME')
+        
+                    }
+                }
+        
+                schedule.forEach((period, index) => {
+                    if(currentTime >= period.startTimeUnix && currentTime < period.endTimeUnix){
+                        setStatus('SCHOOL_NOW')
+                        setPeriod(period)
+                        
+                        try{
+                            if(period.isPassing){
+                                setNextPeriod(schedule[index+1])
+                            } else {
+                                setNextPeriod(schedule[index+2])
+        
+                            }
+        
+                        } catch {
+                            setNextPeriod(null)
+                        }
+        
+                    }
+                })
+            }
+        
+        }
      
 
     }
+
 
     const fetchSchedule = async () => {
 
@@ -323,7 +345,44 @@ const Schedule = () => {
                             {/* <Title level={2} style={{color: 'white', position: 'absolute', textAlign: 'center'}}>  {status}</Title> */}
                             <img src={Morning} className="bright" style={{margin: '5px',width: mobile ? '90% ':"80%",maxWidth: '850px'}}/>
                         </motion.div>,
+                        
+                        'E_LEARNING_MORNING': 
+                        <motion.div variants={periodV} initial="hidden" animate="visible"  style={{position: 'static', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
+                            <motion.div variants={periodText} style={{marginTop: "0px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
+                                <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400,filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.7)"}}>E-Learning Friday</h1>
+                                <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400, filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.7)"}}>{dayjs(currentTime).format('h:mm A')}</h1>
 
+                            </motion.div>
+                            {/* <Title level={2} style={{color: 'white', position: 'absolute', textAlign: 'center'}}>  {status}</Title> */}
+                            <img src={Morning} className="bright" style={{margin: '5px',width: mobile ? '90% ':"80%",maxWidth: '850px'}}/>
+                        </motion.div>,
+                        'E_LEARNING_DAYTIME': 
+                        <motion.div variants={periodV} initial="hidden" animate="visible"  style={{position: 'static', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        <motion.div variants={periodText} style={{paddingBottom: "30px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
+                                    <h1 style={{color: "white",fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400,filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>E-Learning Friday</h1>
+                                    <h1 style={{color: "white",fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400, filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>{dayjs(currentTime).format('h:mm A')}</h1>
+
+                                </motion.div>
+                                <img src={Daytime} style={{margin: '5px', width: mobile ? '90% ':"80%",maxWidth: '850px', transform: "rotate('-90deg')",filter: "drop-shadow(0px 0px 10px rgb(128,203,233,0.8)"}}/>
+                            </motion.div> ,
+                        'E_LEARNING_SUNDOWN': 
+                        <motion.div variants={periodV} initial="hidden" animate="visible"  style={{position: 'static', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        <motion.div variants={periodText} style={{paddingBottom: "40px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
+                                    <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400,filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>E-Learning Friday</h1>
+                                    <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400, filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>{dayjs(currentTime).format('h:mm A')}</h1>
+
+                                </motion.div>
+                                <img src={Sundown} style={{margin: '5px',width: mobile ? '90% ':"80%",maxWidth: '850px', filter: "drop-shadow(0px 0px 10px rgb(230,114,124,0.8)"}}/>
+                            </motion.div>,
+                        'E_LEARNING_NIGHT': 
+                        <motion.div variants={periodV} initial="hidden" animate="visible"  style={{position: 'static', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        <motion.div variants={periodText}style={{paddingBottom: "30px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
+                                    <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', fontWeight: 400,filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>E-Learning Friday</h1>
+                                    <h1 style={{color: "white", fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400, filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>{dayjs(currentTime).format('h:mm A')}</h1>
+
+                                </motion.div>
+                                <img src={Night} style={{margin: '5px',width: mobile ? '90% ':"80%",maxWidth: '850px', filter: "drop-shadow(0px 0px 10px rgb(82,79,153,0.8)"}}/>
+                            </motion.div>,
 
                         'LOADING': <h1>loading</h1>
                     }[status]

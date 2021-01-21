@@ -28,7 +28,7 @@ function App() {
     localStorage.setItem('temp-modal-a', 'seen')
     
   
-    if (localStorage.getItem('feedback-notif') !== 'seen'){
+    if (localStorage.getItem('feedback-notif-a') !== 'seen'){
       setTimeout(() => {openNotification('buttomRight');}, 5000);
       localStorage.setItem('feedback-notif', 'seen')
 
@@ -113,7 +113,7 @@ function App() {
         }
     >
       <Text type="secondary">
-        We apologize for the recent instability with the schedule app in light of the recent scheduel changes. We are working hard to fix it moving forward! 
+        We apologize for the recent instability with the schedule app in light of the recent schedule changes. We are working hard to fix it moving forward! 
       </Text>
 
 

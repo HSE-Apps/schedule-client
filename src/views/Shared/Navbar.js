@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 import { Row, Col, Typography, Button, Checkbox, Drawer,Menu, Avatar, Modal, Input, Radio} from 'antd';
 
-import { GithubOutlined, InstagramOutlined, LogoutOutlined, MenuOutlined, SettingOutlined, LinkOutlined} from '@ant-design/icons';
+import { GithubOutlined, InstagramOutlined, LogoutOutlined, MenuOutlined, SettingOutlined, LinkOutlined, TeamOutlined } from '@ant-design/icons';
 
 
 import logo from '../../img/hseapps.png'
@@ -139,6 +139,7 @@ const Navbar = ({history}) => {
                     <Text style={{fontSize: '12px'}}>Made by HSE Apps</Text>
                     <br></br>
                     <Text style={{fontSize: '18px'}}>
+                    <a target="_blank" href="https://hseapps.org/about"><TeamOutlined style={{marginRight: '5px'}}></TeamOutlined></a>
                     <a target="_blank" href="https://instagram.com/hseapps"><InstagramOutlined style={{marginRight: '8px'}}></InstagramOutlined></a>
                     <a target="_blank" href="https://github.com/HSE-Apps"><GithubOutlined style={{marginRight: '5px'}}></GithubOutlined></a>
                     </Text>
