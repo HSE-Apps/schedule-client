@@ -94,18 +94,32 @@ function App() {
           <Button onClick={() => {setTempModal(false)}} type='primary'>Ok</Button>
         }
     >
-      <Text> 
-          Welcome back everyone! We at HSE Apps hope you enjoyed your short time off, and wish you the best in this spring semester.
-      </Text>
-      <br/>
-      <br/>
-      <Text strong> 
-          Just a reminder, you can change display settings of the countdown along with your lunch by pressing the top right settings button.
-      </Text>
-      <br/>
+        <Modal
+        style={{
+          width: mobile ? "200px" : "400px",
+        }}
+        title={
+          <Text>Announcement</Text>
+        }
+        visible={tempModal}
+
+        onCancel={() => {
+          setTempModal(false)
+        }}
+
+        okText="Ok"
+        footer={
+          <Button onClick={() => {setTempModal(false)}} type='primary'>Ok</Button>
+        }
+    >
       <Text type="secondary">
-        We apologize for the recent instability with the schedule app, and we are working hard to fix it! 
+        We apologize for the recent instability with the schedule app in light of the recent scheduel changes. We are working hard to fix it moving forward! 
       </Text>
+
+
+
+    </Modal>
+
 
 
 

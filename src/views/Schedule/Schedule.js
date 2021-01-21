@@ -211,7 +211,6 @@ const Schedule = () => {
     useEffect(() => {
 
         if(schedule && !period){
-            console.log('get period')
             getPeriod()
         }
 
@@ -223,7 +222,6 @@ const Schedule = () => {
     }, [schedule])
 
     const timer = () => {
-        console.log("wow")
 
         setCurrentTime(dayjs().valueOf())
         getPeriod()

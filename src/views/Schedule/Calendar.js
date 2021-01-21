@@ -12,9 +12,9 @@ import useMedia from '../../hooks/useMedia'
 const {Text, Title} = Typography
 
 let mockData = {
-    noSchool: ["18"],
-    redWednesday: ["11"],
-    blueWednesday: ["4", "18"]
+    redMon: ["1","3","5"],
+    blueMon: ["2", "4"],
+    noSchool: ["18"]
 }
 
 const CalendarSchedule = () => {
@@ -89,30 +89,15 @@ const CalendarSchedule = () => {
                     dateFullCellRender={(date) => {
                         let dayOfWeek = date.format('dddd')
                         let dayOfMonth = date.format('D')
+                        
+                        let week = date.format("W")
 
                         let monthOfDate = date.format("M")
 
                         if(parseInt(monthOfDate) - 1 != month){
                             return <></>
-                        } else if(mockData.noSchool.includes(dayOfMonth) || (dayOfWeek == "Sunday" || dayOfWeek == "Saturday")) {
-                            return(
-                                <>
-                                <div className="calendar-box" style={{width: "100%", height: mobile ? "40px" : "100px", background: "#fafafa"}}>
-                                    <Divider style={{marginBottom: "5px", marginTop: "10px", background: "#f0f0f0"}}/>
-                                    <Text style={{paddingRight: "12px"}}>{dayOfMonth}</Text>
-                                </div>
-                            </>
-                            )
-                        } else {
-                            return(
-                                <div className="calendar-box" style={{width: "100%",height: mobile ? "40px" : "100px", color: "#69c0ff", background: "#f2fbff"}}>
-                                <Divider style={{marginBottom: "5px", marginTop: "10px", background: "#69c0ff", opacity: "0.15"}}/>
-                                <Text style={{paddingRight: "12px", color: "#69c0ff"}}>{dayOfMonth}</Text>
-                            </div>
-                            )
-                        }
+                        } else if(mockData.noSchool.includes(dayOfMonth) || (dayOfWeek == "Sunday" || dayOfWeek == "Saturday")){
 
-                        if(mockData.noSchool.includes(dayOfMonth) || (dayOfWeek == "Sunday" || dayOfWeek == "Saturday")){
                             return(
                                 <>
                                     <div className="calendar-box" style={{width: "100%", height: mobile ? "40px" : "100px", background: "#fafafa"}}>
@@ -122,14 +107,46 @@ const CalendarSchedule = () => {
                                 </>
 
                             )
-                        } else if(mockData.redWednesday.includes(dayOfMonth) || (dayOfWeek == "Monday" || dayOfWeek == "Tuesday")){
+                        } else if (dayOfWeek == "Friday"){
                             return(
-                                <div className="calendar-box" style={{width: "100%", height: mobile ? "40px" : "100px", color: "#ff7875", background: "#fff5f4"}}>
-                                    <Divider style={{marginBottom: "5px", marginTop: "10px", background: "#ff7875", opacity: "0.15"}}/>
-                                    <Text style={{paddingRight: "12px", color: "#ff7875"}}>{dayOfMonth}</Text>
+                                <div className="calendar-box" style={{width: "100%",height: mobile ? "40px" : "100px", color: "#ffd666", background: "#fffbe6"}}>
+                                    <Divider style={{marginBottom: "5px", marginTop: "10px", background: "#69c0ff", opacity: "0.15"}}/>
+                                    <Text style={{paddingRight: "12px", color: "#ffd666"}}>{dayOfMonth}</Text>
                                 </div>
                             )
-                        }else if(mockData.blueWednesday.includes(dayOfMonth) || (dayOfWeek == "Thursday" || dayOfWeek == "Friday")){
+                        } else {
+
+
+                            if( mockData.redMon.includes(week) ? ["Monday", "Tuesday"].includes(dayOfWeek) : ["Wednesday", "Thursday"].includes(dayOfWeek)){
+                                return(
+                                    <div className="calendar-box" style={{width: "100%", height: mobile ? "40px" : "100px", color: "#ff7875", background: "#fff5f4"}}>
+                                        <Divider style={{marginBottom: "5px", marginTop: "10px", background: "#ff7875", opacity: "0.15"}}/>
+                                        <Text style={{paddingRight: "12px", color: "#ff7875"}}>{dayOfMonth}</Text>
+                                    </div>
+                                )
+                            } else {
+                                return(
+                                <div className="calendar-box" style={{width: "100%",height: mobile ? "40px" : "100px", color: "#69c0ff", background: "#f2fbff"}}>
+                                <Divider style={{marginBottom: "5px", marginTop: "10px", background: "#69c0ff", opacity: "0.15"}}/>
+                                <Text style={{paddingRight: "12px", color: "#69c0ff"}}>{dayOfMonth}</Text>
+                                </div>
+                                )
+                            }
+
+                        
+
+                          
+                        }
+                        
+                        
+                        // else if(mockData.redMon.includes(week) && (dayOfWeek == "Monday" || dayOfWeek == "Tuesday")){
+                            // return(
+                            //     <div className="calendar-box" style={{width: "100%", height: mobile ? "40px" : "100px", color: "#ff7875", background: "#fff5f4"}}>
+                            //         <Divider style={{marginBottom: "5px", marginTop: "10px", background: "#ff7875", opacity: "0.15"}}/>
+                            //         <Text style={{paddingRight: "12px", color: "#ff7875"}}>{dayOfMonth}</Text>
+                            //     </div>
+                            // )
+                        // }else if(mockData.blueMon.includes(dayOfMonth) && (dayOfWeek == "Wednesday" || dayOfWeek == "Thursday")){
                             return(
 
                                  <div className="calendar-box" style={{width: "100%",height: mobile ? "40px" : "100px", color: "#69c0ff", background: "#f2fbff"}}>
@@ -137,7 +154,15 @@ const CalendarSchedule = () => {
                                     <Text style={{paddingRight: "12px", color: "#69c0ff"}}>{dayOfMonth}</Text>
                                 </div>
                             )
-                        } 
+                        // } else {
+                        //     return(
+
+                        //         <div className="calendar-box" style={{width: "100%",height: mobile ? "40px" : "100px", color: "#ffd666", background: "#fffbe6"}}>
+                        //            <Divider style={{marginBottom: "5px", marginTop: "10px", background: "#69c0ff", opacity: "0.15"}}/>
+                        //            <Text style={{paddingRight: "12px", color: "#ffd666"}}>{dayOfMonth}</Text>
+                        //        </div>
+                        //    )
+                        // }
                     }}
                         />
             </div>
