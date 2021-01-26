@@ -22,12 +22,29 @@ const {Text, Title} = Typography
 
 const ProgressSchedule = ({currentTime, period,nextPeriod}) => {
 
+    
+    
+    
     const mobile = useMedia(['(min-width: 750px)', '(max-width: 750px)'], [false, true])
-
-
+        
+        
     const {settings,setSettings} = useContext(SettingsContext)
+    const [settingsLocal, setSettingsLocal] = useState(settings)
+    
+    useEffect(() => {
+        setSettingsLocal(settings)
+    }, [settings])
+      
+    
+    const darkTheme = settingsLocal.dark
+    const theme = {
+
+      textColor: darkTheme ? "white" : "black",
+      trialColor: darkTheme ? "#223049" : "",
 
 
+    }
+    
     const lunchStatus = () => {
         let userLunchPeriod = period.lunchPeriods[settings.lunch]
         
@@ -40,7 +57,7 @@ const ProgressSchedule = ({currentTime, period,nextPeriod}) => {
         }
 
     }
-
+    
 
     const genText = () => { 
 
@@ -140,7 +157,7 @@ const ProgressSchedule = ({currentTime, period,nextPeriod}) => {
                 width={mobile ? window.innerWidth * .7 : 500}
                 type="circle"
                 format={() => 
-                <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                <div style={{color: theme.textColor, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                     {settings.display == "Timer" ?  
                     
                     genText() || 'loading' 
@@ -168,21 +185,21 @@ const ProgressSchedule = ({currentTime, period,nextPeriod}) => {
                             {period.isPassing ? 
 
                             nextPeriod?.lunchPeriods && settings.lunch == "A" ?
-                            <Text type="secondary" style={{fontSize: mobile ? "1.1rem" : "1.4rem", marginTop: "10px", wordSpacing: "3px"}}>To Get to A Lunch</Text>
+                            <Text type="secondary" style={{color: theme.textColor, fontSize: mobile ? "1.1rem" : "1.4rem", marginTop: "10px", wordSpacing: "3px"}}>To Get to A Lunch</Text>
 
                             :
-                            <Text type="secondary" style={{fontSize: mobile ? "1.1rem" : "1.4rem", marginTop: "10px", wordSpacing: "3px"}}>Until {nextPeriod.periodName} Begins</Text>
+                            <Text type="secondary" style={{color: theme.textColor, fontSize: mobile ? "1.1rem" : "1.4rem", marginTop: "10px", wordSpacing: "3px"}}>Until {nextPeriod.periodName} Begins</Text>
 
                             :
                                 <>
                                 {period.lunchPeriods ?
                                     {
-                                        'DURING':  <Text type="secondary" style={{fontSize: mobile ? "1.1rem" : "1.4rem", marginTop: "10px", wordSpacing: "3px"}}> Until {settings.lunch} Lunch Ends </Text>,
-                                        'BEFORE':  <Text type="secondary" style={{fontSize: mobile ? "1.1rem" : "1.4rem", marginTop: "10px", wordSpacing: "3px"}}>Until {settings.lunch} Lunch Begins</Text>,
-                                        'AFTER':  <Text type="secondary" style={{fontSize: mobile ? "1.1rem" : "1.4rem", marginTop: "10px", wordSpacing: "3px"}}>{nextPeriod ? `Until ${period.periodName} Ends` : "Until School Ends"}</Text>,
+                                        'DURING':  <Text type="secondary" style={{color: theme.textColor, fontSize: mobile ? "1.1rem" : "1.4rem", marginTop: "10px", wordSpacing: "3px"}}> Until {settings.lunch} Lunch Ends </Text>,
+                                        'BEFORE':  <Text type="secondary" style={{color: theme.textColor, fontSize: mobile ? "1.1rem" : "1.4rem", marginTop: "10px", wordSpacing: "3px"}}>Until {settings.lunch} Lunch Begins</Text>,
+                                        'AFTER':  <Text type="secondary" style={{color: theme.textColor, fontSize: mobile ? "1.1rem" : "1.4rem", marginTop: "10px", wordSpacing: "3px"}}>{nextPeriod ? `Until ${period.periodName} Ends` : "Until School Ends"}</Text>,
                                     }[lunchStatus()]
                                 :
-                                <Text type="secondary" style={{fontSize: mobile ? "1.1rem" : "1.4rem", marginTop: "10px", wordSpacing: "3px"}}>{nextPeriod ? `Until ${period.periodName} Ends` : "Until School Ends"}</Text>
+                                <Text type="secondary" style={{color: theme.textColor, fontSize: mobile ? "1.1rem" : "1.4rem", marginTop: "10px", wordSpacing: "3px"}}>{nextPeriod ? `Until ${period.periodName} Ends` : "Until School Ends"}</Text>
 
                                 }
                                 </>
@@ -191,7 +208,7 @@ const ProgressSchedule = ({currentTime, period,nextPeriod}) => {
                     :
                     
                         
-                        <Text type="secondary" style={{fontSize: mobile ? "1.3rem" : "1.5rem", marginTop: "10px", wordSpacing: "3px"}}>
+                        <Text type="secondary" style={{color: theme.textColor, fontSize: mobile ? "1.3rem" : "1.5rem", marginTop: "10px", wordSpacing: "3px"}}>
                             {genText()} {period.lunchPeriods ? 
                                 {
                                     'DURING':   <>Until Lunch Ends </> ,
@@ -214,6 +231,7 @@ const ProgressSchedule = ({currentTime, period,nextPeriod}) => {
                     '10%': settings.color.to,
                     '100%': settings.color.from,
                 }}
+                trailColor={theme.trialColor}
                 percent={genPercent() || 0}
             />
         </div>

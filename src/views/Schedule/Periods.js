@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 
 import  {Typography} from 'antd'
 
@@ -6,6 +6,7 @@ import {motion} from 'framer-motion'
 
 import useMedia from '../../hooks/useMedia'
 
+import SettingsContext from '../../contexts/SettingsContext'
 
 import {use100vh} from 'react-div-100vh'
 
@@ -45,6 +46,30 @@ const bigContainerVariants = {
 
 const Periods = ({periods}) => {
 
+    const {settings,setSettings} = useContext(SettingsContext)
+    const [settingsLocal, setSettingsLocal] = useState(settings)
+
+    useEffect(() => {
+        setSettingsLocal(settings)
+    }, [settings])
+      
+    
+    const darkTheme = settingsLocal.dark
+    const theme = {
+      textColor: darkTheme ? "white" : "",
+      
+      titleColor: darkTheme ? "#ececec" : "#333",
+      titleWeight: darkTheme ? "600" : "",
+
+      timeColor: darkTheme ? "#f2a365" : "#555",
+      timeSecondaryColor: darkTheme ? "#f2a365" : "#333",
+      timeWeight: darkTheme ? "bold" : "300",
+
+      shadow: darkTheme ? "#30475e" : "rgb(0,118,220,0.18)",
+      
+    }
+
+
     const mobile = useMedia(['(min-width: 750px)', '(max-width: 750px)'], [false, true])
 
     const [showLunch, setShowLunch] = useState(true)
@@ -57,14 +82,14 @@ const Periods = ({periods}) => {
                 if(period.periodName != "Passing Period"){
                     return( 
                     <>
-                        <motion.div onClick={() => setShowLunch(!showLunch)} whileHover={{x: 10}} variants={periodV} style={{flexShrink: 0, boxShadow: " 2px 2px 15px rgb(0,118,220,0.18) ", width: "80%",maxWidth: "500px", height: mobile ? '60px' : '80px',borderRadius: "10px", cursor: period.lunchPeriods ? 'pointer' : '', display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: vh * .02, padding: "24px"}}>
+                        <motion.div onClick={() => setShowLunch(!showLunch)} whileHover={{x: 10}} variants={periodV} style={{flexShrink: 0, boxShadow: ` 2px 2px 15px ${theme.shadow} `, width: "80%",maxWidth: "500px", height: mobile ? '60px' : '80px',borderRadius: "10px", cursor: period.lunchPeriods ? 'pointer' : '', display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: vh * .02, padding: "24px"}}>
                                 <div>
-                                    <Title level={mobile ? 4 : 3} style={{color: "#333", marginBottom: '0px'}}>{period.periodName}</Title>
+                                    <Title level={mobile ? 4 : 3} style={{color: theme.titleColor, fontWeight: theme.titleWeight, marginBottom: '0px'}}>{period.periodName}</Title>
                                 </div>
                                 <div>
-                                    <Text style={{color: "#555", fontSize: mobile ? '12px' : '14px'}}>{period.startTime} - {period.endTime}</Text>
+                                    <Text style={{color: theme.timeColor, fontWeight: theme.timeWeight, fontSize: mobile ? '12px' : '14px'}}>{period.startTime} - {period.endTime}</Text>
                                     {period.lunchPeriods && 
-                                    <Text  style={{marginLeft: "10px"}}> {showLunch ? <DownOutlined/> : <LeftOutlined/> }</Text>
+                                    <Text  style={{marginLeft: "10px", color: theme.textColor }}> {showLunch ? <DownOutlined/> : <LeftOutlined/> }</Text>
                                     }
                                 </div>
                         </motion.div>
@@ -73,9 +98,9 @@ const Periods = ({periods}) => {
 
                                     {Object.keys(period.lunchPeriods).map(lunch => {
                                         return(
-                                            <motion.div whileHover={{x: 3}} variants={periodV} style={{boxShadow: " 2px 2px 15px rgb(0,118,220,0.18) ", width: mobile ? "85%" : '30%',maxWidth: "500px",  height: mobile ? '60px' : '80px', borderRadius: "10px", cursor: 'pointer', display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: vh * .02, padding: "24px"}}>
+                                            <motion.div whileHover={{x: 3}} variants={periodV} style={{boxShadow: ` 2px 2px 15px ${theme.shadow} `, width: mobile ? "85%" : '30%',maxWidth: "500px",  height: mobile ? '60px' : '80px', borderRadius: "10px", cursor: 'pointer', display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: vh * .02, padding: "24px"}}>
                                                 <div>
-                                                    <Title level={mobile ? 4 : 3} style={{color: "#333", marginBottom: '0px'}}>{lunch}{mobile && " Lunch"}</Title>
+                                                    <Title level={mobile ? 4 : 3} style={{color: theme.titleColor, fontWeight: theme.titleWeight, marginBottom: '0px'}}>{lunch}{mobile && " Lunch"}</Title>
                                                 </div>
                                                 <div>
                                                     {mobile ? 
@@ -84,9 +109,9 @@ const Periods = ({periods}) => {
 
                                                     :
                                                     <>
-                                                        <Text style={{color: "#555", fontSize: mobile ? '10px' : '12px'}}>{period.lunchPeriods[lunch].startTime}</Text>
+                                                        <Text style={{color: theme.timeColor, fontWeight: theme.timeWeight, fontSize: mobile ? '10px' : '12px'}}>{period.lunchPeriods[lunch].startTime}</Text>
                                                         <br/>
-                                                        <Text style={{color: "#555", fontSize: mobile ? '10px' : '12px'}}>{period.lunchPeriods[lunch].endTime}</Text>
+                                                        <Text style={{color: theme.timeColor, fontWeight: theme.timeWeight, fontSize: mobile ? '10px' : '12px'}}>{period.lunchPeriods[lunch].endTime}</Text>
                                                     </>
                                                     }
                                                  

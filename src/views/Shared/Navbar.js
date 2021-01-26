@@ -1,7 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react';
 import {Link} from 'react-router-dom'
 
-import { Row, Col, Typography, Button, Checkbox, Drawer,Menu, Avatar, Modal, Input, Radio} from 'antd';
+import { Row, Col, Typography, Button, Checkbox, Drawer,Menu, Avatar, Modal, Input, Radio, Switch } from 'antd';
 
 import { GithubOutlined, InstagramOutlined, LogoutOutlined, MenuOutlined, SettingOutlined, LinkOutlined, TeamOutlined } from '@ant-design/icons';
 
@@ -23,9 +23,6 @@ const {Title , Text, Paragraph} = Typography
 
 
 
-
-
-
 const Navbar = ({history}) => {
 
   const [modal, setModal] = useState(false)
@@ -34,24 +31,33 @@ const Navbar = ({history}) => {
 
   const mobile = useMedia(['(min-width: 750px)', '(max-width: 750px)'], [false, true])
 
+  
+  
   // refreshes state after context is updated
   useEffect(() => {
     setSettingsLocal(settings)
   }, [settings])
-
+  
   const [settingsLocal, setSettingsLocal] = useState(settings)
-
-
+  
+  const currentTheme = settingsLocal.dark
+  const theme = {
+    backgroundColor: currentTheme ? "#222831" : "",
+    borderBottom: currentTheme ? "" : "solid 1px rgba(0,0,0,0.1)",
+    textColor: currentTheme ? "white" : "",
+    iconColor: currentTheme ? "#f2a365" : "#1890ff"
+  }
+  
   return (
     <> 
-      <div style={{borderBottom: 'solid 1px rgba(0,0,0,0.1)'}}>
+      <div style={{borderBottom: theme.borderBottom, backgroundColor: theme.backgroundColor}}>
         <Row style = {{padding: '10px'}} align = "middle">
         <Col span={20} style={{display: "flex", alignItems: "center"}}>
             <Link to="/"><motion.img whileHover={{ scale: 1.05 }} src={logo} style={{height: "40px"}}></motion.img></Link>
-            <Title level={3} style={{margin: "0px 5px"}}> HSE Schedule</Title>
+            <Title level={3} style={{margin: "0px 5px", color: theme.textColor}}> HSE Schedule</Title>
         </Col>
         <Col span={4}  style={{display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
-            <Button onClick={() => setModal(!modal)} shape='circle' type='primary' icon={<SettingOutlined/>}/>
+            <Button onClick={() => setModal(!modal)} shape='circle' style={{backgroundColor: theme.iconColor, outline: "none"}} type='primary' icon={<SettingOutlined/>}/>
           {/* {auth.isAuth ? 
             <>
               <Text style={{marginRight: "10px", fontSize: "16px"}}>{auth.user.name}</Text>
@@ -125,17 +131,32 @@ const Navbar = ({history}) => {
           </Radio.Group>
         </div>
 
+
         <Text strong style={{fontSize: "10px"}}> MAIN DISPLAY </Text>
-        <div style={{marginTop: "3px"}}>
+        <div style={{marginTop: "3px", marginBottom: "20px"}}>
         <Radio.Group value={settingsLocal.display} onChange={(e) => setSettingsLocal({...settingsLocal, display: e.target.value})}>
             <Radio.Button value={'Timer'}>Timer</Radio.Button >
             <Radio.Button value={'Period'}>Period</Radio.Button >
 
           </Radio.Group>
+
+
         </div>
 
 
-        <div style={{width: '100%', textAlign:'center', marginTop: "30px"}}>
+        <Text strong style={{fontSize: "10px"}}> DARK MODE </Text>
+        <div style={{marginTop: "3px" }}>
+          <Switch 
+          checked={settings.dark}
+          onChange={() => {
+            setSettingsLocal({...settingsLocal, dark: settingsLocal.dark ? false : true})
+            setSettings({...settingsLocal, dark: settingsLocal.dark ? false : true})
+          }} 
+          >Dark</Switch >
+        </div>
+
+
+        <div style={{width: '100%', textAlign:'center', marginTop: "15px"}}>
                     <Text style={{fontSize: '12px'}}>Made by HSE Apps</Text>
                     <br></br>
                     <Text style={{fontSize: '18px'}}>

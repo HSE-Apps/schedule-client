@@ -41,9 +41,10 @@ dayjs.extend(customParseFormat)
 
 
 let scheduleData = {
-    noSchool: ["25","26","27"],
+    noSchool: ["18"],
     redWednesday: ["11"],
     blueWednesday: ["4", "18"]
+
 }
 const periodV = {
     hidden:{
@@ -74,30 +75,47 @@ const periodText = {
 
 const Schedule = () => {
 
+    const {settings,setSettings} = useContext(SettingsContext)
+
+    const [settingsLocal, setSettingsLocal] = useState(settings)
+    
     const [schedule, setSchedule] = useState(null)
     const [period, setPeriod] = useState(null)
     const [nextPeriod, setNextPeriod] = useState(null)
     const [currentTime, setCurrentTime] = useState(dayjs().valueOf())
     const [status, setStatus] = useState('LOADING')
 
-
+    
     const mobile = useMedia(['(min-width: 750px)', '(max-width: 750px)'], [false, true])
+    
+    useEffect(() => {
+        setSettingsLocal(settings)
+    }, [settings])
+      
+    
+    const darkTheme = settingsLocal.dark
+    const theme = {
+      backgroundColor: darkTheme ? "#222831" : "#fafcff",
+      textColor: darkTheme ? "white" : "",
+      shadow: darkTheme ? "#30475e" : "rgb(0,118,220,0.2)",
+      BG: darkTheme ? "white" : ""
+    }
 
-
+    
     const [view, setView] = useState('clock')
-
+    
     const vh = use100vh()
-
+    
     const getPeriod = () => {
 
         let currentTime = dayjs().valueOf()
         let today = dayjs()
         let day = today.format('dddd')
-
+        
         if (day == 'Friday'){
             
             
-             if(currentTime > dayjs('8:00 PM', 'h mm A').valueOf()){
+            if(currentTime > dayjs('8:00 PM', 'h mm A').valueOf()){
                 setStatus('E_LEARNING_NIGHT')
             } else if (currentTime > dayjs('6:00 PM', 'h mm A').valueOf()){
                 setStatus('E_LEARNING_SUNDOWN')
@@ -255,7 +273,7 @@ const Schedule = () => {
         <Navbar/>
 
 
-        <div style={{background: "#fafcff", display:"flex",flexDirection:"row",height:vh - 30, width: "100%", alignItems: 'center', justifyContent: 'center', flexDirection: 'column', paddingBottom: "80px"}}>
+        <div style={{background: theme.backgroundColor, display:"flex",flexDirection:"row",height:vh - 30, width: "100%", alignItems: 'center', justifyContent: 'center', flexDirection: 'column', paddingBottom: "80px"}}>
             {view == "clock" &&
             <>
                 {
@@ -411,18 +429,18 @@ const Schedule = () => {
         </div>
         
         <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: "100%", position: 'fixed', bottom: '30px',marginTop: "20px"}}>
-                <div style={{display: 'flex', zIndex: 4, boxShadow: " 2px 2px 10px rgb(0,118,220,0.2) ", borderRadius: "10px"}}>
-                            <div onClick={() => setView("list")} style={{width: "80px", height: "45px", display: 'flex', borderRadius: "10px 0px 0px 10px",justifyContent: 'center', alignItems: "center", background: view == "list" ? "white" : "transparent", boxShadow: view == "list" ? " 2px 2px 10px rgb(0,118,220,0.32) " : "none", cursor: 'pointer'}}>
-                                <Text style={{paddingTop: '5px', color: "#333"}}><UnorderedListOutlined style={{fontSize: "20px"}}/></Text>
+                <div style={{display: 'flex', zIndex: 4, boxShadow: ` 2px 2px 10px ${theme.shadow} `, borderRadius: "10px"}}>
+                            <div onClick={() => setView("list")} style={{width: "80px", height: "45px", display: 'flex', borderRadius: "10px 0px 0px 10px",justifyContent: 'center', alignItems: "center", background: darkTheme ? view == "list" ? theme.BG : "#222831" : theme.BG, boxShadow: view == "list" ? " 2px 2px 10px rgb(0,118,220,0.32) " : "none", cursor: 'pointer'}}>
+                                <Text style={{paddingTop: '5px', color: darkTheme ? view == "list" ? "black" : "white" : "black"}}><UnorderedListOutlined style={{fontSize: "20px"}}/></Text>
                             </div>
-                            <div onClick={() => setView("clock")} style={{width: "80px", height: "45px", display: 'flex', justifyContent: 'center', alignItems: "center", background: view == "clock" ? "white" : "transparent", boxShadow: view == "clock" ? " 2px 2px 10px rgb(0,118,220,0.32) " : "none", cursor: 'pointer'}}>
-                                <Text style={{paddingTop: '5px', color: "#333"}}><ClockCircleOutlined style={{fontSize: "20px"}} /></Text>
+                            <div onClick={() => setView("clock")} style={{width: "80px", height: "45px", display: 'flex', justifyContent: 'center', alignItems: "center", background: darkTheme ? view == "clock" ? theme.BG : "#222831" : theme.BG, boxShadow: view == "clock" ? " 2px 2px 10px rgb(0,118,220,0.32) " : "none", cursor: 'pointer'}}>
+                                <Text style={{paddingTop: '5px', color: darkTheme ? view == "clock" ? "black" : "white" : "black"}}><ClockCircleOutlined style={{fontSize: "20px"}} /></Text>
                             </div>
-                            <div onClick={() => setView("news")} style={{width: "80px", height: "45px", display: 'flex', justifyContent: 'center', alignItems: "center", background: view == "news" ? "white" : "transparent", boxShadow: view == "news" ? " 2px 2px 10px rgb(0,118,220,0.32) " : "none", cursor: 'pointer'}}>
-                                <Text style={{paddingTop: '5px', color: "#333"}}><PlayCircleOutlined style={{fontSize: "20px"}} /></Text>
+                            <div onClick={() => setView("news")} style={{width: "80px", height: "45px", display: 'flex', justifyContent: 'center', alignItems: "center", background: darkTheme ? view == "news" ? theme.BG : "#222831" : theme.BG, boxShadow: view == "news" ? " 2px 2px 10px rgb(0,118,220,0.32) " : "none", cursor: 'pointer'}}>
+                                <Text style={{paddingTop: '5px', color: darkTheme ? view == "news" ? "black" : "white" : "black"}}><PlayCircleOutlined style={{fontSize: "20px"}} /></Text>
                             </div>
-                            <div onClick={() => setView("calendar")} style={{width: "80px", height: "45px", display: 'flex', borderRadius: "0px 10px 10px 0px",justifyContent: 'center', alignItems: "center", background: view == "calendar" ? "white" : "transparent", boxShadow: view == "calendar" ? " 2px 2px 10px rgb(0,118,220,0.32) " : "none", cursor: 'pointer'}}>
-                                <Text style={{paddingTop: '3px', color: "#333"}}><CalendarOutlined style={{fontSize: "20px"}} /></Text>
+                            <div onClick={() => setView("calendar")} style={{width: "80px", height: "45px", display: 'flex', borderRadius: "0px 10px 10px 0px",justifyContent: 'center', alignItems: "center", background: darkTheme ? view == "calendar" ? theme.BG : "#222831" : theme.BG, boxShadow: view == "calendar" ? " 2px 2px 10px rgb(0,118,220,0.32) " : "none", cursor: 'pointer'}}>
+                                <Text style={{paddingTop: '3px', color: darkTheme ? view == "calendar" ? "black" : "white" : "black"}}><CalendarOutlined style={{fontSize: "20px"}} /></Text>
                             </div>
                 </div>
             </div>
