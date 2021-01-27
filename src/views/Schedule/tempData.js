@@ -42,8 +42,8 @@ export let monWedSchedule = [
         }
     }, {
         periodName: "Passing Period",
-        startTime: "12:29 AM",
-        endTime: "12:36 AM",
+        startTime: "12:29 PM",
+        endTime: "12:36 PM",
         isPassing: true
     }, 
     {
