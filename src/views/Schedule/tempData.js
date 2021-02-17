@@ -127,3 +127,59 @@ export let weekendSchedule = [
 
     
 ]
+
+
+export let monWedHourDelay = [
+
+
+    {
+        periodName: "Period 1",
+        startTime: "8:30 AM",
+        endTime: "9:42 AM",
+    }, {
+        periodName: "Passing Period",
+        startTime: "9:42 AM",
+        endTime: "9:49 AM",
+        isPassing: true
+    },
+    {
+        periodName: "Period 2",
+        startTime: "9:49 AM",
+        endTime: "11:01 AM",
+    },
+    {
+        periodName: "Passing Period",
+        startTime: "11:01 AM",
+        endTime: "11:01 AM",
+        isPassing: true
+    },
+    {
+        periodName: "Period 3",
+        startTime: "11:01 AM",
+        endTime: "12:41 PM",
+        lunchPeriods: {
+            A: {
+                startTime: "11:01 AM",
+                endTime: "11:31 AM"
+            },
+            B: {
+                startTime: "11:36 AM",
+                endTime: "12:06 AM"
+            },
+            C: {
+                startTime: "12:11 AM",
+                endTime: "12:41 PM"
+            },
+        }
+    }, {
+        periodName: "Passing Period",
+        startTime: "12:41 AM",
+        endTime: "12:48 AM",
+        isPassing: true
+    }, 
+    {
+        periodName: "Period 4",
+        startTime: "12:48 PM",
+        endTime: "2:00 PM",
+    }
+]

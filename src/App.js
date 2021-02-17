@@ -19,13 +19,13 @@ function App() {
   const mobile = useMedia(['(min-width: 750px)', '(max-width: 750px)'], [false, true])
 
 
-  const [tempModal, setTempModal] = useState(!localStorage.getItem('temp-modal-a')) 
+  const [tempModal, setTempModal] = useState(!localStorage.getItem('temp-modal-x')) 
 
 
 
   
   useEffect(() => {
-    localStorage.setItem('temp-modal-a', 'seen')
+    localStorage.setItem('temp-modal-x', 'seen')
     
   
     if (localStorage.getItem('feedback-notif-a') !== 'seen'){
@@ -112,8 +112,8 @@ function App() {
           <Button onClick={() => {setTempModal(false)}} type='primary'>Ok</Button>
         }
     >
-      <Text type="secondary">
-        We apologize for the recent instability with the schedule app in light of the recent schedule changes. We are working hard to fix it moving forward! 
+      <Text type="primary">
+        The Schedule app has been updated for the 1 hour delay schedule! 
       </Text>
 
 
