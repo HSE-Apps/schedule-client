@@ -164,10 +164,10 @@ export let monWedHourDelay = [
             },
             B: {
                 startTime: "11:36 AM",
-                endTime: "12:06 AM"
+                endTime: "12:06 PM"
             },
             C: {
-                startTime: "12:11 AM",
+                startTime: "12:11 PM",
                 endTime: "12:41 PM"
             },
         }
