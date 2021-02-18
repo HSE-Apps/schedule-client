@@ -29,7 +29,7 @@ import Morning from '../../img/Landscapes/Morning.png'
 import Daytime from '../../img/Landscapes/Daytime.png'
 import Sundown from '../../img/Landscapes/Sundown.png'
 import Night from '../../img/Landscapes/Night.png'
-import {tuesThurSchedule, monWedSchedule, weekendSchedule, monWedHourDelay} from './tempData'
+import {tuesThurSchedule, monWedSchedule, weekendSchedule, monWedHourDelay,tuesThurVirtualHourDelay} from './tempData'
 
 const {Text} = Typography
 
@@ -186,7 +186,7 @@ const Schedule = () => {
         const special = true
 
         if (special) {
-            fetchedSchedule = monWedHourDelay
+            fetchedSchedule = tuesThurVirtualHourDelay
         } else {
 
         

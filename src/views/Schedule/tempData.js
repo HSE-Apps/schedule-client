@@ -183,3 +183,60 @@ export let monWedHourDelay = [
         endTime: "2:00 PM",
     }
 ]
+
+
+
+
+
+
+
+
+
+
+
+export let tuesThurVirtualHourDelay = [
+
+
+    {
+        periodName: "Period 5",
+        startTime: "8:30 AM",
+        endTime: "9:30 AM",
+    }, {
+        periodName: "Passing Period",
+        startTime: "9:30 AM",
+        endTime: "9:40 AM",
+        isPassing: true
+    },
+    {
+      periodName: "Period 6",
+      startTime: "9:40 AM",
+      endTime: "10:40 AM"
+    },
+    {
+      periodName: "Passing Period",
+      startTime: "10:40 AM",
+      endTime: "10:40 AM",
+      isPassing: true
+    },
+    {
+        periodName: "Lunch Break",
+        startTime: "10:40 AM",
+        endTime: "11:20 AM"
+    },
+    {
+        periodName: "Period 7",
+        startTime: "11:20 AM",
+        endTime: "12:20 PM"
+    },
+    {
+        periodName: "Passing Period",
+        startTime: "12:20 PM",
+        endTime: "12:30 PM",
+        isPassing: true
+    }, 
+    {
+        periodName: "Tiered Interventions",
+        startTime: "12:30 PM",
+        endTime: "2:00 PM",
+    }
+]
