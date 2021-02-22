@@ -183,7 +183,7 @@ const Schedule = () => {
         let dayOfWeek = today.format('dddd')
         let dayOfMonth = today.format('D')
 
-        const special = true
+        const special = false
 
         if (special) {
             fetchedSchedule = tuesThurVirtualHourDelay
