@@ -14,7 +14,7 @@ const {Text, Title} = Typography
 let mockData = {
     redMon: ["1","3","5"],
     blueMon: ["2", "4"],
-    noSchool: ["18"]
+    noSchool: [""]
 }
 
 const CalendarSchedule = () => {
