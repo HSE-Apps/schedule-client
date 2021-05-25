@@ -186,7 +186,7 @@ const Schedule = () => {
         const special = true
 
         if (special) {
-            fetchedSchedule = monFullSchedule
+            fetchedSchedule = tuesThurSchedule
         } else {
 
         
