@@ -310,7 +310,7 @@ const Schedule = () => {
                         'AFTER_SCHOOL_DAYTIME': 
                         <motion.div variants={periodV} initial="hidden" animate="visible"  style={{position: 'static', display:'flex', justifyContent: 'center', alignItems: 'center'}}>
                         <motion.div variants={periodText} style={{paddingBottom: "30px",textAlign: 'center',color: 'white',position: 'absolute',top:'50%',left: '50%', zIndex: 2, transform: 'translate(-50%, -50%)'}}>
-                                    <h1 style={{color: "white",fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400,filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>School Has Ended</h1>
+                                    <h1 style={{color: "white",fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400,filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>Summer Break</h1>
                                     <h1 style={{color: "white",fontSize: mobile ? '24px' : '32px', margin: "10px 0px", fontWeight: 400, filter: "drop-shadow(0px 0px 10px rgb(0,0,0,0.5)"}}>{dayjs(currentTime).format('h:mm A')}</h1>
 
                                 </motion.div>

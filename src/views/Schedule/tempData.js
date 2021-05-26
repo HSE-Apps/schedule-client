@@ -115,11 +115,7 @@ export let tuesThurSchedule = [
         endTime: "1:16 PM",
         isPassing: true
     }, 
-    {
-        periodName: "Tiered Interventions",
-        startTime: "1:16 PM",
-        endTime: "2:00 PM",
-    }
+
 ]
 
 
